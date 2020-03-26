@@ -25,6 +25,8 @@ jobs:
         id: Build
 
       - name: Run tests
+        run: docker ps
 
       - name: Deploy
+        run: docker ps
         
