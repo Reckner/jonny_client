@@ -10,9 +10,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: nvm use and npm install
-        run: |
-            nvm use
-            npm install
+        run: npm install
             
       - name: docker down
         run: docker-compose down
