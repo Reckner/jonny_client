@@ -13,7 +13,7 @@ jobs:
         run: npm install
         
       - name: docker up
-        run: docker-compose up -f docker-compose.yml -d
+        run: docker-compose up -f docker-compose.yml -d --build --force-recreate
         id: Build
 
       - name: Run tests
