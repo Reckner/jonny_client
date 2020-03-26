@@ -1,3 +1,5 @@
+![](https://github.com/Reckner/jonny_client/workflows/.github/workflows/main.yml/badge.svg)
+
 ## How to run service
 <span>Make sure you have docker installed.</span>
 <a href="https://www.docker.com/get-started">install Docker here!</a>
