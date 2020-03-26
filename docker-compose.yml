@@ -11,20 +11,6 @@ services:
             - .:/usr/src/app
         networks:
             - app-network
-
-    webserver:
-        image: nginx:alpine
-        container_name: webserver
-        restart: unless-stopped
-        tty: true
-        ports:
-            - '8080:80'
-            # - '443:443'
-        networks:
-            - app-network
-        volumes:
-            - /var/nginx/conf:/etc/nginx
-
 networks:
     app-network:
         driver: bridge
