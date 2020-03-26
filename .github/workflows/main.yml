@@ -12,11 +12,10 @@ jobs:
       - name: nvm use and npm install
         run: npm install
             
-      - name: docker down
-        run: docker-compose down
+
         
       - name: docker build
-        run: docker-compose build
+        run: docker-compose build -f docker-compose.yml
         
       - name: docker up
         run: docker-compose up -d
