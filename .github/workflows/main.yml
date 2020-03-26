@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+    
+jobs:
+  run:
+    name: Run
+    runs-on: self-hosted
+    steps:
+      - name: nvm use and npm install
+        run: |
+            nvm use
+            npm install
+            
+      - name: docker down
+        run: docker-compose down
+        
+      - name: docker build
+        run: docker-compose build
+        
+      - name: docker up
+        run: docker-compose up -d
+        id: Build
+
+      - name: Run tests
+
+      - name: Deploy
+        
