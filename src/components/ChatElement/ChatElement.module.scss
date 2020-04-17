@@ -1,0 +1,19 @@
+.element {
+    background-color: #f8f9fa;
+    &:hover {
+        background-color: lightblue;
+    }
+}
+.avatar {
+    max-width: 3rem;
+    max-height: 3rem;
+}
+.name {
+    font-size: 12px;
+}
+.message {
+    font-size: 12px;
+}
+.date {
+    font-size: 10px;
+}
