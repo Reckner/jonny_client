@@ -1,16 +1,16 @@
 import React from 'react';
 import classnames from 'classnames';
 import styles from './ChatList.module.scss';
-import profilePhotoDaniel from './Pictures/Daniel.jpg';
-import profilePhotoRuben from './Pictures/Ruben.jpg';
-import profilePhotoVladislav from './Pictures/Vladislav.jpg';
+import profilePhotoDaniel from '../../assets/mocks/images/daniel.jpg';
+import profilePhotoRuben from '../../assets/mocks/images/ruben.jpg';
+import profilePhotoVladislav from '../../assets/mocks/images/vladislav.jpg';
 import ChatElement from '../ChatElement/ChatElement';
 
 const ChatList: React.FC = () => {
     return (
         <div
             className={classnames(
-                'd-flex flex-column flex-fill overflow-auto bg-light w-100',
+                'd-flex flex-column flex-fill overflow-auto w-100 border-top border-bottom',
                 styles['user-container'],
             )}
         >

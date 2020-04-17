@@ -1,35 +1,41 @@
 import React from 'react';
-import './QuickLinks.scss';
-import friendsLogo from './Pictures/friends.png';
-import addnewLogo from './Pictures/addnew.png';
-import settingsLogo from './Pictures/settings.png';
-import unmutedLogo from './Pictures/unmuted.png';
-import profileLogo from './Pictures/profile.png';
+import classnames from 'classnames';
+import styles from './QuickLinks.module.scss';
+
+import {
+    SettingsIcon,
+    FriendsIcon,
+    AddFriendIcon,
+    UnMuteIcon,
+    ProfileIcon,
+} from '../../assets/images';
 
 const QuickLinks: React.FC = () => {
     return (
         <>
-            <div>
-                <div className="bg-dark"></div>
-            </div>
-            <div className="quicklinks">
-                <div className="links">
-                    <div className="box">
-                        <img className="defaultLogo" src={friendsLogo} />
+            <div
+                className={classnames(
+                    'd-flex flex-column justify-content-between py-4 border',
+                    styles.quickLinks,
+                )}
+            >
+                <div className="d-flex flex-column align-items-center">
+                    <div className={classnames('pb-3', styles.defaultLogo)}>
+                        <img src={FriendsIcon} />
                     </div>
-                    <div className="box">
-                        <img className="defaultLogo" src={addnewLogo} />
+                    <div className={classnames('pb-3', styles.defaultLogo)}>
+                        <img src={AddFriendIcon} />
                     </div>
-                    <div className="box">
-                        <img className="defaultLogo" src={settingsLogo} />
+                    <div className={classnames('pb-3', styles.defaultLogo)}>
+                        <img src={SettingsIcon} />
                     </div>
-                    <div className="box">
-                        <img className="defaultLogo" src={unmutedLogo} />
+                    <div className={styles.defaultLogo}>
+                        <img src={UnMuteIcon} />
                     </div>
                 </div>
                 <div>
-                    <div className="boxProfile">
-                        <img className="profileLogo" src={profileLogo} />
+                    <div className={styles.profileLogo}>
+                        <img src={ProfileIcon} />
                     </div>
                 </div>
             </div>
