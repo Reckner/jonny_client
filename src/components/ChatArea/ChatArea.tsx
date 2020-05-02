@@ -33,7 +33,7 @@ const ChatArea: React.FC = () => {
             <div className="d-flex flex-fill"></div>
             <div className="d-flex justify-content-between align-items-center border-top p-2">
                 <div className="input-group mr-2">
-                    <textarea className="form-control rounded"></textarea>
+                    <input className="form-control rounded"></input>
                 </div>
                 <button className="btn-primary rounded" type="button">
                     Send
