@@ -1,12 +1,14 @@
 version: '3'
 services:
-    messenger:
-        container_name: jonnymessenger
+    jonny_client:
+        container_name: jonny_client
+        environment:
+            JWT_SECRET: 'bestteamreckneris'
         build:
             context: ./
             dockerfile: Dockerfile
         ports:
-            - '5000:5000'
+            - '3000:3000'
         volumes:
             - .:/usr/src/app
         networks:
@@ -14,6 +16,3 @@ services:
 networks:
     app-network:
         driver: bridge
-
-volumes:
-    webserver:
