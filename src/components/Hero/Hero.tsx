@@ -3,8 +3,14 @@ import $ from 'jquery';
 
 import './Hero.scss';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
-const Hero: React.FC = () => {
+interface Hero {
+    auth: boolean;
+    setAuth: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Hero: React.FC<Hero> = ({ auth, setAuth }) => {
     const [logEmail, setLogEmail] = useState<string>('');
     const [logPassword, setLogPassword] = useState<string>('');
 
@@ -26,19 +32,31 @@ const Hero: React.FC = () => {
         });
 
         console.log(response);
+
+        if (response.data?.auth && response.data?.token) {
+            localStorage.setItem('x-access-token', response.data.token);
+            setAuth(true);
+        }
     };
 
     const handleCreateAccount = async (e) => {
         e.preventDefault();
 
-        await axios.post('http://127.0.0.1:5000/user', {
+        const response = await axios.post('http://127.0.0.1:5000/user', {
             email: regEmail,
             username: regUserName,
             password: regPassword,
         });
+
+        if (response.data?.auth && response.data?.token) {
+            localStorage.setItem('x-access-token', response.data.token);
+            setAuth(true);
+        }
     };
 
-    return (
+    return auth ? (
+        <Redirect to="/" />
+    ) : (
         <div className="login-page">
             <div className="form">
                 <h2>JONNY</h2>

@@ -2,6 +2,8 @@ version: '3'
 services:
     jonny_client:
         container_name: jonny_client
+        environment:
+            JWT_SECRET: 'bestteamreckneris'
         build:
             context: ./
             dockerfile: Dockerfile
