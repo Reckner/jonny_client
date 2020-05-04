@@ -9,8 +9,19 @@ import {
     UnMuteIcon,
     ProfileIcon,
 } from '../../assets/images';
+import Modal from '../ModalWindow/Modal';
 
 const QuickLinks: React.FC = () => {
+    const [state, setState] = React.useState({
+        showModal: false,
+    });
+
+    const handleSettings = () => {
+        setState({
+            showModal: true,
+        });
+    };
+
     return (
         <>
             <div
@@ -27,7 +38,9 @@ const QuickLinks: React.FC = () => {
                         <img src={AddFriendIcon} />
                     </div>
                     <div className={classnames('pb-3', styles.defaultLogo)}>
-                        <img src={SettingsIcon} />
+                        <a onClick={() => handleSettings()}>
+                            <img src={SettingsIcon} />
+                        </a>
                     </div>
                     <div className={styles.defaultLogo}>
                         <img src={UnMuteIcon} />
@@ -39,6 +52,8 @@ const QuickLinks: React.FC = () => {
                     </div>
                 </div>
             </div>
+
+            {state.showModal ? <Modal /> : null}
         </>
     );
 };

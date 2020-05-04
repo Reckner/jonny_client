@@ -1,9 +1,10 @@
 import React from 'react';
+import classnames from 'classnames';
 
 const Modal: React.FC = () => {
     return (
         <div
-            className="modal fade show"
+            className={classnames('modal fade show', 'modal-window')}
             id="exampleModalCenter"
             role="dialog"
             aria-labelledby="exampleModalCenterTitle"
