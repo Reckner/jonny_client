@@ -1,8 +1,16 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 
-const PrivateRoute = (props) => {
-    return <>{props.auth ? props.children : <Redirect to={'/'} />}</>;
+const PrivateRoute = ({ auth, component, path }) => {
+    return (
+        <>
+            {auth ? (
+                <Route path={path} component={component} />
+            ) : (
+                <Redirect to={'/login'} />
+            )}
+        </>
+    );
 };
 
 export default PrivateRoute;
