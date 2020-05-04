@@ -1,5 +1,9 @@
 import React from 'react';
 
+const user1 = {
+    name: 'Vladislav Jekimtsev'
+};
+
 const Modal: React.FC = () => {
     return (
         <div
@@ -13,7 +17,7 @@ const Modal: React.FC = () => {
                 <div className="modal-content">
                     <div className="modal-header">
                         <h5 className="modal-title" id="exampleModalLongTitle">
-                            Vladislav Jekimtsev
+                            {user1.name}
                         </h5>
                         <button
                             type="button"
