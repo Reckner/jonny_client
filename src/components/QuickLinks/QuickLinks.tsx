@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classnames from 'classnames';
 import styles from './QuickLinks.module.scss';
-
-
+import UserSettings from '../UserSettings/UserSettings';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import {
     SettingsIcon,
     FriendsIcon,
@@ -10,8 +10,11 @@ import {
     UnMuteIcon,
     ProfileIcon,
 } from '../../assets/images';
+import { render } from 'react-dom';
+
 
 const QuickLinks: React.FC = () => {
+
     return (
         <>
             <div
@@ -27,7 +30,7 @@ const QuickLinks: React.FC = () => {
                     <div className={classnames('pb-3', styles.defaultLogo)}>
                         <img src={AddFriendIcon} />
                     </div>
-                    <div className={classnames('pb-3', styles.defaultLogo)}>
+                    <div className={classnames('pb-3', styles.defaultLogo)} onClick={()=>{}}>
                         <img src={SettingsIcon} />
                     </div>
                     <div className={styles.defaultLogo}>
@@ -41,7 +44,9 @@ const QuickLinks: React.FC = () => {
                 </div>
             </div>
         </>
+        
     );
 };
+
 
 export default QuickLinks;

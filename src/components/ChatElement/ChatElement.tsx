@@ -15,6 +15,7 @@ interface Chat {
 }
 
 const ChatElement: React.FC<Chat> = ({ avatar, name, message, date, id, setTarget, chats }) => {
+    
     return (
         <a
             onClick={()=>setTarget(chats.filter((chat)=>chat.id===id)[0])}
