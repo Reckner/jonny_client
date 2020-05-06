@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+    BrowserRouter as Router,
+    Route,
+    Redirect,
+    Switch,
+} from 'react-router-dom';
 import jwt from 'jsonwebtoken';
 
 import { Chat, Hero, PrivateRoute } from './components';
@@ -44,7 +49,12 @@ const App: React.FC = () => {
                     render={() => <Hero auth={auth} setAuth={setAuth} />}
                     path="/login"
                 />
-                <PrivateRoute auth={auth} path="/" component={Chat} />
+                <Route
+                    render={() => <Redirect to={'/login'} />}
+                    exact
+                    path="/"
+                />
+                <PrivateRoute auth={auth} path="/chat" component={Chat} />
             </Switch>
         </Router>
     );

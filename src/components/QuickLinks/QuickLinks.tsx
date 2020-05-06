@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import styles from './QuickLinks.module.scss';
+import * as $ from 'jquery';
 
 import {
     SettingsIcon,
@@ -12,16 +13,6 @@ import {
 import Modal from '../ModalWindow/Modal';
 
 const QuickLinks: React.FC = () => {
-    const [state, setState] = React.useState({
-        showModal: false,
-    });
-
-    const handleSettings = () => {
-        setState({
-            showModal: true,
-        });
-    };
-
     return (
         <>
             <div
@@ -37,10 +28,12 @@ const QuickLinks: React.FC = () => {
                     <div className={classnames('pb-3', styles.defaultLogo)}>
                         <img src={AddFriendIcon} />
                     </div>
-                    <div className={classnames('pb-3', styles.defaultLogo)}>
-                        <a onClick={() => handleSettings()}>
-                            <img src={SettingsIcon} />
-                        </a>
+                    <div
+                        className={classnames('pb-3', styles.defaultLogo)}
+                        data-toggle="modal"
+                        data-target="#exampleModalCenter"
+                    >
+                        <img src={SettingsIcon} />
                     </div>
                     <div className={styles.defaultLogo}>
                         <img src={UnMuteIcon} />
@@ -53,7 +46,7 @@ const QuickLinks: React.FC = () => {
                 </div>
             </div>
 
-            {state.showModal ? <Modal /> : null}
+            <Modal />
         </>
     );
 };

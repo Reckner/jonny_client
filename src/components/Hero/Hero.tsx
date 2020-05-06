@@ -55,7 +55,7 @@ const Hero: React.FC<Hero> = ({ auth, setAuth }) => {
     };
 
     return auth ? (
-        <Redirect to="/" />
+        <Redirect to="/chat" />
     ) : (
         <div className="login-page">
             <div className="form">
