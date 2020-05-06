@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import AppSettings from './AppSettings';
-import Profile from './Profile';
+import { AppSettings, Profile } from './Components';
 
 const Modal: React.FC = () => {
     return (

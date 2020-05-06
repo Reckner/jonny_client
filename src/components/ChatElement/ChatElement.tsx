@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import {ChatMock} from '../ChatList/ChatList';
 
 import styles from './ChatElement.module.scss';
 
@@ -8,11 +9,15 @@ interface Chat {
     name: string;
     message?: string;
     date?: string;
+    id: number;
+    setTarget: React.Dispatch<React.SetStateAction<ChatMock | null>>
+    chats: ChatMock[];
 }
 
-const ChatElement: React.FC<Chat> = ({ avatar, name, message, date }) => {
+const ChatElement: React.FC<Chat> = ({ avatar, name, message, date, id, setTarget, chats }) => {
     return (
         <a
+            onClick={()=>setTarget(chats.filter((chat)=>chat.id===id)[0])}
             className={classnames(
                 'd-flex align-items-center px-3 py-2 text-decoration-none text-body',
                 styles.element,
