@@ -13,7 +13,7 @@ const Chat: React.FC = () => {
             <QuickLinks />
             <ChatList setTarget={setTarget} />
             <Route
-                path="/chat/id"
+                path="/chat/:id"
                 render={() => <ChatArea target={target} />}
             />
         </Router>
