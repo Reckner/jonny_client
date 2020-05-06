@@ -19,24 +19,10 @@ const Modal: React.FC = () => {
             </div>
             <div className="modal-body">
                 <div>
-                    <Link to="/chat/profile">Click Me</Link>
+                    <Link to="/chat/userSettings">User Settings</Link>
                 </div>
                 <div>
-                    <button className="btn btn-primary">Notifications</button>
-                </div>
-                <div>
-                    <button className="btn btn-primary">
-                        Privacy and Security
-                    </button>
-                </div>
-                <div>
-                    <button className="btn btn-primary">Chat Settings</button>
-                </div>
-                <div>
-                    <button className="btn btn-primary">Advanced</button>
-                </div>
-                <div>
-                    <button className="btn btn-primary">Language</button>
+                    <Link to="/chat/contacts">Contacts</Link>
                 </div>
             </div>
             <div className="modal-footer">

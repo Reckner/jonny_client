@@ -5,4 +5,4 @@ export { default as ChatList } from './ChatList/ChatList';
 export { default as Hero } from './Hero/Hero';
 export { default as QuickLinks } from './QuickLinks/QuickLinks';
 export { default as PrivateRoute } from './PrivateRouter/PrivateRouter';
-export { default as UserSettings } from './UserSettings/UserSettings';
+export { default as UserSettings } from './ModalWindow/Components/UserSettings/UserSettings';

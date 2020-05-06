@@ -1,6 +1,13 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { AppSettings, Profile } from './Components';
+import { Route, Switch } from 'react-router-dom';
+import {
+    AppSettings,
+    ProfileDetails,
+    UserSettings,
+    Contacts,
+    BioDetails,
+    ImportantNotes,
+} from './Components';
 
 const Modal: React.FC = () => {
     return (
@@ -14,12 +21,21 @@ const Modal: React.FC = () => {
             <div className="modal-dialog modal-dialog-centered" role="document">
                 <div className="modal-content">
                     <Switch>
-                        <Route path="/chat">
-                            <AppSettings />
-                        </Route>
-                        <Route path="/chat/profile">
-                            <Profile />
-                        </Route>
+                        <Route exact path="/chat" component={AppSettings} />
+                        <Route
+                            path="/chat/profile"
+                            component={ProfileDetails}
+                        />
+                        <Route
+                            path="/chat/userSettings"
+                            component={UserSettings}
+                        />
+                        <Route path="/chat/contacts" component={Contacts} />
+                        <Route path="/chat/bio" component={BioDetails} />
+                        <Route
+                            path="/chat/importantnotes"
+                            component={ImportantNotes}
+                        />
                     </Switch>
                 </div>
             </div>

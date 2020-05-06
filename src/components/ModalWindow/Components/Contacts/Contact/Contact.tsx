@@ -1,15 +1,17 @@
-import React, {useState} from 'react';
+import React from 'react';
 import classnames from 'classnames';
-import styles from './Contact.module.scss'
-import profilePicture from '../../../assets/mocks/images/daniel.jpg';
+import styles from './Contact.module.scss';
+import profilePicture from '../../../../../assets/mocks/images/ruben.jpg';
 
-const Contact: React.FC= () => {
-    return(
+const Contact: React.FC = () => {
+    return (
         <>
-            <div className={classnames(
-                'd-flex align-items-center px-3 py-2 border-bottom',
-                styles['contact'],
-            )}>
+            <div
+                className={classnames(
+                    'd-flex align-items-center px-3 py-2 border-bottom',
+                    styles['contact'],
+                )}
+            >
                 <div className="mr-2">
                     <img
                         className={classnames('rounded-circle', styles.avatar)}
@@ -19,7 +21,7 @@ const Contact: React.FC= () => {
                 </div>
                 <div className="d-flex flex-column">
                     <div className="font-weight-bold">
-                        <span className={styles.name}>Daniel Antonov</span>
+                        <span className={styles.name}>Daniel Jekimtsev</span>
                     </div>
                     <span className={styles.time}>Now active</span>
                 </div>
@@ -27,6 +29,5 @@ const Contact: React.FC= () => {
         </>
     );
 };
-
 
 export default Contact;
