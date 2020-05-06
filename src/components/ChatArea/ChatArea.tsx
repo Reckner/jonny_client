@@ -5,11 +5,6 @@ import profilePicture from '../../assets/mocks/images/daniel.jpg';
 import { SettingsIcon } from '../../assets/images';
 import {ChatMock} from '../ChatList/ChatList';
 
-const user1 = {
-    name: 'Daniel Antonov',
-    message: 'Lorem ipsum dolorasdasdasdasdasd',
-    time: '10:30'
-};
 
 interface ChatArea {
     target: ChatMock | null;
