@@ -2,6 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import styles from './QuickLinks.module.scss';
 
+
 import {
     SettingsIcon,
     FriendsIcon,
@@ -35,7 +36,7 @@ const QuickLinks: React.FC = () => {
                 </div>
                 <div>
                     <div className={styles.profileLogo}>
-                        <img src={ProfileIcon} />
+                        <img src={ProfileIcon}/>
                     </div>
                 </div>
             </div>
