@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
 import styles from './ChatArea.module.scss';
-import profilePicture from '../../assets/mocks/images/daniel.jpg';
 import { SettingsIcon } from '../../assets/images';
-import {ChatMock} from '../ChatList/ChatList';
+import { ChatMock } from '../ChatList/ChatList';
+import io from 'socket.io-client';
 
 const user1 = {
     name: 'Daniel Antonov',
@@ -16,7 +16,25 @@ interface ChatArea {
 }
 
 const ChatArea: React.FC<ChatArea> = ({target}) => {
+    let socket;
 
+    const [messageText, setMessageText] = useState<string>('');
+    
+    useEffect(() => {
+        socket = io.connect('http://127.0.0.1:5001', { reconnection: true });
+    });
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        socket.emit('message', messageText, () => {
+        
+        });
+    };
+
+    const handleTextChange = (e) => {
+        setMessageText(e.target.value);
+    }
 
     return target ? (<div
         className={classnames(
@@ -45,9 +63,9 @@ const ChatArea: React.FC<ChatArea> = ({target}) => {
         <div className="d-flex flex-fill"></div>
         <div className="d-flex justify-content-between align-items-center border-top p-2">
             <div className="input-group mr-2">
-                <input className="form-control rounded"></input>
+                <input className="form-control rounded" onChange={handleTextChange} />
             </div>
-            <button className="btn-primary rounded" type="button">
+            <button className="btn-primary rounded" type="button" onClick={handleSubmit}>
                 Send
             </button>
         </div>

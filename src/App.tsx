@@ -35,7 +35,7 @@ const App: React.FC = () => {
         (async () => {
             setAuth(await authenticated());
         })();
-    }, [auth]);
+    });
 
     return (
         <Router>
