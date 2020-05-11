@@ -4,12 +4,13 @@
     }
 
     .avatar {
-        max-width: 50px;
-        max-height: 50px;
+        width: 3rem;
+        height: 3rem;
+        object-fit: cover;
     }
 
     .settings {
-        max-width: 30px;
-        max-height: 30px;
+        max-width: 1.88rem;
+        max-height: 1.88rem;
     }
 }

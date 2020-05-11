@@ -152,7 +152,7 @@ const ChatList: React.FC<ChatList> = ({ setTarget }) => {
             )}
         >
             {chats.map((chat) => (
-                <Link to={`/chat/${chat.id}`}>
+                <Link to={`/chat/${chat.id}`} className="text-decoration-none">
                     <ChatElement
                         chats={chats}
                         setTarget={setTarget}

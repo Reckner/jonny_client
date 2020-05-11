@@ -4,8 +4,9 @@
     }
 }
 .avatar {
-    max-width: 3rem;
-    max-height: 3rem;
+    width: 3rem;
+    height: 3rem;
+    object-fit: cover;
 }
 .name {
     font-size: 12px;
