@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classnames from 'classnames';
 import styles from './Contacts.module.scss';
 import Contact from './Contact/Contact';
 import HeaderSettings from '../HeaderSettings/HeaderSettings';
 import { ChatMock } from '../../../ChatList/ChatList';
+import { users } from '../../../../assets/users';
+import { Link } from 'react-router-dom';
 
 interface Contacts {
     target: ChatMock | null;
@@ -11,6 +13,7 @@ interface Contacts {
 }
 
 const Contacts: React.FC<Contacts> = ({ target, setModalLayout }) => {
+    const [contacts, setContacts]= useState(users);
     return (
         <>
             <div
@@ -21,22 +24,13 @@ const Contacts: React.FC<Contacts> = ({ target, setModalLayout }) => {
             >
                 <HeaderSettings target={target} />
                 <div className="d-flex flex-column flex-fill overflow-auto w-100 border-top border-bottom">
-                    <Contact />
-                    <Contact />
-                    <Contact />
-                    <Contact />
-                    <Contact />
-                    <Contact />
-                    <Contact />
-                    <Contact />
-                    <Contact />
-                    <Contact />
-                    <Contact />
-                    <Contact />
-                    <Contact />
-                    <Contact />
-                    <Contact />
-                    <Contact />
+                    {contacts.map((contact)=>(
+                        <Link to={`/chat/${contact.id}`}>
+                        <Contact 
+                            name={contact.name}
+                            photo={contact.photo}/>
+                        </Link>
+                    ))}
                 </div>
             </div>
         </>

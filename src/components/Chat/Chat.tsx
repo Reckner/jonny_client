@@ -7,14 +7,14 @@ import QuickLinks from '../QuickLinks/QuickLinks';
 
 const Chat: React.FC = () => {
     const [target, setTarget] = useState<ChatMock | null>(null);
-
+    const [modalLayout, setModalLayout] = useState<string>('appsettings');
     return (
         <Router>
-            <QuickLinks target={target} />
+            <QuickLinks target={target} modalLayout={modalLayout} setModalLayout={setModalLayout}/>
             <ChatList setTarget={setTarget} />
             <Route
                 path="/chat/:id"
-                render={() => <ChatArea target={target} />}
+                render={() => <ChatArea target={target} setModalLayout={setModalLayout}/>}
             />
         </Router>
     );

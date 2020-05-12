@@ -19,6 +19,10 @@ const Modal: React.FC<Modal> = ({ target, setModalLayout }) => {
         setModalLayout('usersettings');
     };
 
+    const showContacts = () => {
+        setModalLayout('contacts');
+    };
+
     return (
         <>
             <div className="modal-header">
@@ -36,7 +40,7 @@ const Modal: React.FC<Modal> = ({ target, setModalLayout }) => {
             </div>
             <div className="modal-body">
                 <div onClick={showUserSettings}>User Settings</div>
-                <div>Contacts</div>
+                <div onClick={showContacts}>Contacts</div>
             </div>
             <div className="modal-footer">
                 <button

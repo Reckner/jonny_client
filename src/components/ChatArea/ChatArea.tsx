@@ -6,9 +6,15 @@ import { ChatMock } from '../ChatList/ChatList';
 
 interface ChatArea {
     target: ChatMock | null;
+    setModalLayout: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const ChatArea: React.FC<ChatArea> = ({ target }) => {
+const ChatArea: React.FC<ChatArea> = ({ target, setModalLayout }) => {
+
+    const showUserProfile = () => {
+        setModalLayout('profile');
+    };
+
     return target ? (
         <div
             className={classnames(
@@ -24,20 +30,17 @@ const ChatArea: React.FC<ChatArea> = ({ target }) => {
                 />
                 <div className="d-flex flex-column align-items-center">
                     <div className="profile-name">
-                        <h4 className="name">{target.name}</h4>
+                        <h5 className="name">{target.name}</h5>
                     </div>
                     <div className="last-active">
                         <p className="mb-0">last active {target.time}</p>
                     </div>
                 </div>
-                <img
-                    className={styles.settings}
+                 <i className="fas fa-cog" 
                     id="dropdownMenuButton"
                     data-toggle="dropdown"
                     aria-haspopup="true"
-                    aria-expanded="false"
-                    src={SettingsIcon}
-                />
+                    aria-expanded="false"></i>{' '}
                 <div
                     className="dropdown-menu"
                     aria-labelledby="dropdownMenuButton"
@@ -46,10 +49,11 @@ const ChatArea: React.FC<ChatArea> = ({ target }) => {
                         className="dropdown-item"
                         data-toggle="modal"
                         data-target="#exampleModalCenter"
+                        onClick={showUserProfile}
                     >
                         View Profile
                     </a>
-                    <a className="dropdown-item" href="#">
+                    <a className="dropdown-item" href="">
                         Delete Chat
                     </a>
                 </div>

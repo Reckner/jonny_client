@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { AppSettings, UserSettings, Contacts } from './Components';
 import { ChatMock } from '../ChatList/ChatList';
+import './Modal.scss';
+import AddNewContact from './Components/Contacts/AddNewContact/AddNewContact';
 
 interface Modal {
     target: ChatMock | null;
+    modalLayout: string;
+    setModalLayout: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Modal: React.FC<Modal> = ({ target }) => {
-    const [modalLayout, setModalLayout] = useState<string>('appsettings');
-
+const Modal: React.FC<Modal> = ({ target, modalLayout, setModalLayout }) => {
     const handleContent = () => {
         switch (modalLayout) {
             case 'appsettings':
@@ -32,6 +34,10 @@ const Modal: React.FC<Modal> = ({ target }) => {
             case 'contacts':
                 return (
                     <Contacts target={target} setModalLayout={setModalLayout} />
+                );
+            case 'addnewcontact':
+                return (
+                    <AddNewContact target={target} setModalLayout={setModalLayout}/>
                 );
             default:
                 return (
