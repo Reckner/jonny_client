@@ -8,8 +8,17 @@ import {
     BioDetails,
     ImportantNotes,
 } from './Components';
+import { ChatMock } from '../ChatList/ChatList';
+import ChatArea from '../ChatArea/ChatArea';
+import ChatSettings from './Components/ChatSettings/ChatSettings';
 
-const Modal: React.FC = () => {
+interface Modal {
+    target: ChatMock | null;
+};
+
+
+const Modal: React.FC<Modal> = ({target}) => {
+
     return (
         <div
             className="modal fade show"
@@ -21,21 +30,12 @@ const Modal: React.FC = () => {
             <div className="modal-dialog modal-dialog-centered" role="document">
                 <div className="modal-content">
                     <Switch>
-                        <Route exact path="/chat" component={AppSettings} />
-                        <Route
-                            path="/chat/profile"
-                            component={ProfileDetails}
-                        />
-                        <Route
-                            path="/chat/userSettings"
-                            component={UserSettings}
-                        />
-                        <Route path="/chat/contacts" component={Contacts} />
-                        <Route path="/chat/bio" component={BioDetails} />
-                        <Route
-                            path="/chat/importantnotes"
-                            component={ImportantNotes}
-                        />
+                        <Route 
+                            path="/chat/:id" 
+                            render={() => <AppSettings target={target} />}/>
+                        <Route 
+                            path="/:id/settings" 
+                            render={() => <UserSettings target={target} />}/>
                     </Switch>
                 </div>
             </div>

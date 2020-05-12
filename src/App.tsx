@@ -11,27 +11,28 @@ import { Chat, Hero, PrivateRoute } from './components';
 
 const App: React.FC = () => {
     const authenticated = async (): Promise<boolean> => {
-        return new Promise((resolve, reject) => {
-            const token = localStorage.getItem('x-access-token') || '';
-            if (token.length > 0) {
-                try {
-                    const decoded = jwt.verify(
-                        token,
-                        process.env.JWT_SECRET || 'bestteamreckneris',
-                    );
+        return true;
+        //new Promise((resolve, reject) => {
+        //     const token = localStorage.getItem('x-access-token') || '';
+        //     if (token.length > 0) {
+        //         try {
+        //             const decoded = jwt.verify(
+        //                 token,
+        //                 process.env.JWT_SECRET || 'bestteamreckneris',
+        //             );
 
-                    if (decoded) {
-                        resolve(true);
-                    } else {
-                        resolve(false);
-                    }
-                } catch (err) {
-                    reject(err);
-                }
-            } else {
-                resolve(false);
-            }
-        });
+        //             if (decoded) {
+        //                 resolve(true);
+        //             } else {
+        //                 resolve(false);
+        //             }
+        //         } catch (err) {
+        //             reject(err);
+        //         }
+        //     } else {
+        //         resolve(false);
+        //     }
+        // });
     };
 
     const [auth, setAuth] = useState<any>(authenticated());

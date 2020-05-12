@@ -10,7 +10,7 @@ const ImportantNotes: React.FC= () => {
                 styles['important-notes'],
             )}>
                 <div className="px-5">
-                    <span className={styles.info}>Aljo privet kak dela</span>
+                    <span className={styles.info}>Here you can write some useful tips for users</span>
                 </div>
             </div>
         </>

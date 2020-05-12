@@ -2,8 +2,13 @@ import React, { useState } from 'react';
 import classnames from 'classnames';
 import styles from './ProfileDetails.module.scss';
 import profilePicture from '../../../../assets/mocks/images/daniel.jpg';
+import { ChatMock } from '../../../ChatList/ChatList';
 
-const ProfileDetails: React.FC = () => {
+interface ProfileDetails{
+    target: ChatMock | null;
+};
+
+const ProfileDetails: React.FC<ProfileDetails> = ({target}) => {
     return (
         <>
             <div
@@ -15,13 +20,12 @@ const ProfileDetails: React.FC = () => {
                 <div className="mr">
                     <img
                         className={classnames('rounded-circle', styles.avatar)}
-                        src={profilePicture}
+                        src={target?.photo}
                         alt="Avatar"
                     />
                 </div>
-                <div className="d-flex align-items-left flex-column px-3 flex-fill border-black">
-                    <div className="first-name">Daniel</div>
-                    <div className="last-name">Antonov</div>
+                <div className="d-flex align-items-left flex-center px-3 flex-fill border-black">
+                <div className="name">{target?.name}</div>
                 </div>
             </div>
         </>

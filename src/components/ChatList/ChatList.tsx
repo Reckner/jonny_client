@@ -8,6 +8,7 @@ import ChatElement from '../ChatElement/ChatElement';
 import { tsConstructorType } from '@babel/types';
 import {Link} from 'react-router-dom';
 import { match } from 'minimatch';
+import { users }  from '../../assets/users';
 
 export interface ChatMock {
     id: number;
@@ -15,6 +16,7 @@ export interface ChatMock {
     message: string;
     time: string;
     photo: string;
+    isRegistered: boolean;
 }
 
 interface ChatList {
@@ -23,116 +25,8 @@ interface ChatList {
 
 
 const ChatList: React.FC<ChatList> = ({setTarget}) => {
-    const [chats, setChats] = useState<ChatMock[]>([
-        {
-            id: 1,
-            name: 'Daniel Antonov',
-            message: 'Lorem ipsum dolorasdasdasdasdasd',
-            time: '10:30',
-            photo: profilePhotoDaniel
-        },
-        {
-            id: 2,
-            name: 'Ruben Galoyan',
-            message: 'Lorem ipsum dolordasda',
-            time: '11:30',
-            photo: profilePhotoRuben
-        },
-        {
-            id: 3,
-            name: 'Vladislav Jekimtsev',
-            message: 'Lorem ipsum dolor',
-            time: '12:30',
-            photo: profilePhotoVladislav
-        },
-        {
-            id: 4,
-            name: 'Daniel Antonov',
-            message: 'Lorem ipsum dolorasdasdasdasdasd',
-            time: '10:30',
-            photo: profilePhotoDaniel
-        },
-        {
-            id: 5,
-            name: 'Ruben Galoyan',
-            message: 'Lorem ipsum dolordasda',
-            time: '11:30',
-            photo: profilePhotoRuben
-        },
-        {
-            id: 6,
-            name: 'Vladislav Jekimtsev',
-            message: 'Lorem ipsum dolor',
-            time: '12:30',
-            photo: profilePhotoVladislav
-        },
-        {
-            id: 7,
-            name: 'Daniel Antonov',
-            message: 'Lorem ipsum dolorasdasdasdasdasd',
-            time: '10:30',
-            photo: profilePhotoDaniel
-        },
-        {
-            id: 8,
-            name: 'Ruben Galoyan',
-            message: 'Lorem ipsum dolordasda',
-            time: '11:30',
-            photo: profilePhotoRuben
-        },
-        {
-            id: 9,
-            name: 'Vladislav Jekimtsev',
-            message: 'Lorem ipsum dolor',
-            time: '12:30',
-            photo: profilePhotoVladislav
-        },
-        {
-            id: 10,
-            name: 'Daniel Antonov',
-            message: 'Lorem ipsum dolorasdasdasdasdasd',
-            time: '10:30',
-            photo: profilePhotoDaniel
-        },
-        {
-            id: 11,
-            name: 'Ruben Galoyan',
-            message: 'Lorem ipsum dolordasda',
-            time: '11:30',
-            photo: profilePhotoRuben
-        },
-        {
-            id: 12,
-            name: 'Vladislav Jekimtsev',
-            message: 'Lorem ipsum dolor',
-            time: '12:30',
-            photo: profilePhotoVladislav
-        },
-        {
-            id: 13,
-            name: 'Daniel Antonov',
-            message: 'Lorem ipsum dolorasdasdasdasdasd',
-            time: '10:30',
-            photo: profilePhotoDaniel
-        },
-        {
-            id: 14,
-            name: 'Ruben Galoyan',
-            message: 'Lorem ipsum dolordasda',
-            time: '11:30',
-            photo: profilePhotoRuben
-        },
-        {
-            id: 15,
-            name: 'Vladislav Jekimtsev',
-            message: 'Lorem ipsum dolor',
-            time: '12:30',
-            photo: profilePhotoVladislav
-        }
-    ]);
-
+    const [chats, setChats] = useState<ChatMock[]>(users);
     
-
     return (
         <div
             className={classnames(
@@ -143,13 +37,13 @@ const ChatList: React.FC<ChatList> = ({setTarget}) => {
         {chats.map(chat =>(
             <Link to={`/chat/${chat.id}`}>
             <ChatElement
-            chats={chats}
-            setTarget={setTarget}
-            id={chat.id}
-            avatar={chat.photo}
-            name={chat.name}
-            message={chat.message}
-            date={chat.time}
+                chats={chats}
+                setTarget={setTarget}
+                id={chat.id}
+                avatar={chat.photo}
+                name={chat.name}
+                message={chat.message}
+                date={chat.time}
             />
             </Link>
         ))}

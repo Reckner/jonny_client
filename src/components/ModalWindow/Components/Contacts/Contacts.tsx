@@ -3,8 +3,13 @@ import classnames from 'classnames';
 import styles from './Contacts.module.scss';
 import Contact from './Contact/Contact';
 import HeaderSettings from '../HeaderSettings/HeaderSettings';
+import { ChatMock } from '../../../ChatList/ChatList';
 
-const Contacts: React.FC = () => {
+interface Contacts{
+    target: ChatMock | null;
+};
+
+const Contacts: React.FC<Contacts> = ({target}) => {
     return (
         <>
             <div
@@ -13,7 +18,7 @@ const Contacts: React.FC = () => {
                     styles['contacts'],
                 )}
             >
-                <HeaderSettings />
+                <HeaderSettings target={target}/>
                 <div className="d-flex flex-column flex-fill overflow-auto w-100 border-top border-bottom">
                     <Contact />
                     <Contact />
