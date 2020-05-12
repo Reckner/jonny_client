@@ -25,11 +25,9 @@ const Contacts: React.FC<Contacts> = ({ target, setModalLayout }) => {
                 <HeaderSettings target={target} />
                 <div className="d-flex flex-column flex-fill overflow-auto w-100 border-top border-bottom">
                     {contacts.map((contact)=>(
-                        <Link to={`/chat/${contact.id}`}>
                         <Contact 
                             name={contact.name}
                             photo={contact.photo}/>
-                        </Link>
                     ))}
                 </div>
             </div>
