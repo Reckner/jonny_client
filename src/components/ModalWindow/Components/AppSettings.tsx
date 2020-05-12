@@ -1,21 +1,23 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import { ChatMock } from '../../ChatList/ChatList';
-import UserSettings from './UserSettings/UserSettings';
-import { AppSettings } from '.';
 
 interface RouteParams {
-    id: string
+    id: string;
 }
 
 interface Modal {
     target: ChatMock | null;
-};
+    setModalLayout: React.Dispatch<React.SetStateAction<string>>;
+}
 
-const Modal: React.FC<Modal> = ({target}) => {
-    const params= useParams<RouteParams>();
-    const currentUserId= target?.id;
+const Modal: React.FC<Modal> = ({ target, setModalLayout }) => {
+    const params = useParams<RouteParams>();
+    const currentUserId = target?.id;
+
+    const showUserSettings = () => {
+        setModalLayout('usersettings');
+    };
 
     return (
         <>
@@ -33,16 +35,8 @@ const Modal: React.FC<Modal> = ({target}) => {
                 </button>
             </div>
             <div className="modal-body">
-                <div>
-                    <Link to={`/${currentUserId}/settings`}>
-                        User Settings
-                    </Link>
-                </div>
-                <div>
-                    <Link to={`/`}>
-                        Contacts
-                    </Link>
-                </div>
+                <div onClick={showUserSettings}>User Settings</div>
+                <div>Contacts</div>
             </div>
             <div className="modal-footer">
                 <button
@@ -58,7 +52,6 @@ const Modal: React.FC<Modal> = ({target}) => {
             </div>
         </>
     );
-    
 };
 
 export default Modal;

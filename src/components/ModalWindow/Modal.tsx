@@ -1,23 +1,47 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import {
-    AppSettings,
-    ProfileDetails,
-    UserSettings,
-    Contacts,
-    BioDetails,
-    ImportantNotes,
-} from './Components';
+import React, { useState } from 'react';
+import { AppSettings, UserSettings, Contacts } from './Components';
 import { ChatMock } from '../ChatList/ChatList';
-import ChatArea from '../ChatArea/ChatArea';
-import ChatSettings from './Components/ChatSettings/ChatSettings';
 
 interface Modal {
     target: ChatMock | null;
-};
+}
 
+const Modal: React.FC<Modal> = ({ target }) => {
+    const [modalLayout, setModalLayout] = useState<string>('appsettings');
 
-const Modal: React.FC<Modal> = ({target}) => {
+    const handleContent = () => {
+        switch (modalLayout) {
+            case 'appsettings':
+                return (
+                    <AppSettings
+                        target={target}
+                        setModalLayout={setModalLayout}
+                    />
+                );
+            case 'usersettings':
+                return (
+                    <UserSettings
+                        target={target}
+                        setModalLayout={setModalLayout}
+                    />
+                );
+            case 'profile':
+                return (
+                    <Contacts target={target} setModalLayout={setModalLayout} />
+                );
+            case 'contacts':
+                return (
+                    <Contacts target={target} setModalLayout={setModalLayout} />
+                );
+            default:
+                return (
+                    <AppSettings
+                        target={target}
+                        setModalLayout={setModalLayout}
+                    />
+                );
+        }
+    };
 
     return (
         <div
@@ -28,16 +52,7 @@ const Modal: React.FC<Modal> = ({target}) => {
             aria-hidden="true"
         >
             <div className="modal-dialog modal-dialog-centered" role="document">
-                <div className="modal-content">
-                    <Switch>
-                        <Route 
-                            path="/chat/:id" 
-                            render={() => <AppSettings target={target} />}/>
-                        <Route 
-                            path="/:id/settings" 
-                            render={() => <UserSettings target={target} />}/>
-                    </Switch>
-                </div>
+                <div className="modal-content">{handleContent()}</div>
             </div>
         </div>
     );

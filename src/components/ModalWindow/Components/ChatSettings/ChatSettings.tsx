@@ -8,11 +8,11 @@ import BioDetails from '../BioDetails/BioDetails';
 import Button from '../Button/Button';
 import { ChatMock } from '../../../ChatList/ChatList';
 
-interface ChatSettings{
+interface ChatSettings {
     target: ChatMock | null;
-};
+}
 
-const ChatSettings: React.FC<ChatSettings> = ({target}) => {
+const ChatSettings: React.FC<ChatSettings> = ({ target }) => {
     return (
         <>
             <div
@@ -21,12 +21,12 @@ const ChatSettings: React.FC<ChatSettings> = ({target}) => {
                     styles['chat-settings'],
                 )}
             >
-                <HeaderSettings target={target}/>
-                <ProfileDetails target={target}/>
+                <HeaderSettings target={target} />
+                <ProfileDetails target={target} />
                 <ImportantNotes />
-                <hr/>
-                <Button whatFor="Username"/>
-                <hr/>
+                <hr />
+                <Button whatFor="Username" />
+                <hr />
             </div>
         </>
     );

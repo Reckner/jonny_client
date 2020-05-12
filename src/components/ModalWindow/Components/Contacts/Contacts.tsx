@@ -5,11 +5,12 @@ import Contact from './Contact/Contact';
 import HeaderSettings from '../HeaderSettings/HeaderSettings';
 import { ChatMock } from '../../../ChatList/ChatList';
 
-interface Contacts{
+interface Contacts {
     target: ChatMock | null;
-};
+    setModalLayout: React.Dispatch<React.SetStateAction<string>>;
+}
 
-const Contacts: React.FC<Contacts> = ({target}) => {
+const Contacts: React.FC<Contacts> = ({ target, setModalLayout }) => {
     return (
         <>
             <div
@@ -18,7 +19,7 @@ const Contacts: React.FC<Contacts> = ({target}) => {
                     styles['contacts'],
                 )}
             >
-                <HeaderSettings target={target}/>
+                <HeaderSettings target={target} />
                 <div className="d-flex flex-column flex-fill overflow-auto w-100 border-top border-bottom">
                     <Contact />
                     <Contact />

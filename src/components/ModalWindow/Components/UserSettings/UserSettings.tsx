@@ -8,11 +8,12 @@ import BioDetails from '../BioDetails/BioDetails';
 import Button from '../Button/Button';
 import { ChatMock } from '../../../ChatList/ChatList';
 
-interface UserSettings{
+interface UserSettings {
     target: ChatMock | null;
-};
+    setModalLayout: React.Dispatch<React.SetStateAction<string>>;
+}
 
-const UserSettings: React.FC<UserSettings> = ({target}) => {
+const UserSettings: React.FC<UserSettings> = ({ target, setModalLayout }) => {
     return (
         <>
             <div
@@ -21,15 +22,15 @@ const UserSettings: React.FC<UserSettings> = ({target}) => {
                     styles['user-settings'],
                 )}
             >
-                <HeaderSettings target={target}/>
-                <ProfileDetails target={target}/>
+                <HeaderSettings target={target} />
+                <ProfileDetails target={target} />
                 <ImportantNotes />
                 <BioDetails />
-                <hr/>
-                <Button whatFor="Username"/>
-                <hr/>
-                <Button whatFor="Phone number"/>
-                <hr/>
+                <hr />
+                <Button whatFor="Username" />
+                <hr />
+                <Button whatFor="Phone number" />
+                <hr />
             </div>
         </>
     );

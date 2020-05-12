@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import styles from './ProfileDetails.module.scss';
-import profilePicture from '../../../../assets/mocks/images/daniel.jpg';
 import { ChatMock } from '../../../ChatList/ChatList';
 
-interface ProfileDetails{
+interface ProfileDetails {
     target: ChatMock | null;
-};
+}
 
-const ProfileDetails: React.FC<ProfileDetails> = ({target}) => {
+const ProfileDetails: React.FC<ProfileDetails> = ({ target }) => {
     return (
         <>
             <div
@@ -25,7 +24,7 @@ const ProfileDetails: React.FC<ProfileDetails> = ({target}) => {
                     />
                 </div>
                 <div className="d-flex align-items-left flex-center px-3 flex-fill border-black">
-                <div className="name">{target?.name}</div>
+                    <div className="name">{target?.name}</div>
                 </div>
             </div>
         </>

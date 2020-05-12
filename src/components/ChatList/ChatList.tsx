@@ -1,14 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import classnames from 'classnames';
 import styles from './ChatList.module.scss';
-import profilePhotoDaniel from '../../assets/mocks/images/daniel.jpg';
-import profilePhotoRuben from '../../assets/mocks/images/ruben.jpg';
-import profilePhotoVladislav from '../../assets/mocks/images/vladislav.jpg';
 import ChatElement from '../ChatElement/ChatElement';
-import { tsConstructorType } from '@babel/types';
-import {Link} from 'react-router-dom';
-import { match } from 'minimatch';
-import { users }  from '../../assets/users';
+import { Link } from 'react-router-dom';
+import { users } from '../../assets/users';
 
 export interface ChatMock {
     id: number;
@@ -20,13 +15,12 @@ export interface ChatMock {
 }
 
 interface ChatList {
-    setTarget: React.Dispatch<React.SetStateAction<ChatMock | null>>
+    setTarget: React.Dispatch<React.SetStateAction<ChatMock | null>>;
 }
 
-
-const ChatList: React.FC<ChatList> = ({setTarget}) => {
+const ChatList: React.FC<ChatList> = ({ setTarget }) => {
     const [chats, setChats] = useState<ChatMock[]>(users);
-    
+
     return (
         <div
             className={classnames(
@@ -34,23 +28,21 @@ const ChatList: React.FC<ChatList> = ({setTarget}) => {
                 styles['user-container'],
             )}
         >
-        {chats.map(chat =>(
-            <Link to={`/chat/${chat.id}`}>
-            <ChatElement
-                chats={chats}
-                setTarget={setTarget}
-                id={chat.id}
-                avatar={chat.photo}
-                name={chat.name}
-                message={chat.message}
-                date={chat.time}
-            />
-            </Link>
-        ))}
+            {chats.map((chat) => (
+                <Link to={`/chat/${chat.id}`}>
+                    <ChatElement
+                        chats={chats}
+                        setTarget={setTarget}
+                        id={chat.id}
+                        avatar={chat.photo}
+                        name={chat.name}
+                        message={chat.message}
+                        date={chat.time}
+                    />
+                </Link>
+            ))}
         </div>
-        
     );
 };
-
 
 export default ChatList;
