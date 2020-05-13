@@ -22,7 +22,6 @@ const Message: React.FC<Message> = ({ message }) => {
 
     return isSentByCurrentUser ? (
         <div className="messageContainer justifyEnd">
-            <p className="sentText pr-10" />
             <div className="messageBox backgroundBlue">
                 <p className="messageText colorWhite">
                     {ReactEmoji.emojify(text)}
@@ -36,9 +35,7 @@ const Message: React.FC<Message> = ({ message }) => {
                     {ReactEmoji.emojify(text)}
                 </p>
             </div>
-            <p className="sentText pl-10 ">
-                {time} - {sender}
-            </p>
+            <p className="sentText pl-10 ">{sender}</p>
         </div>
     );
 };

@@ -4,7 +4,11 @@ import Message from './Message/Message';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import { IMessage } from './Message/Message';
 
-const MessageArea: React.FC<IMessage[]> = (messages) => (
+interface IMessageArea {
+    messages: IMessage[];
+}
+
+const MessageArea: React.FC<IMessageArea> = ({ messages }) => (
     <ScrollToBottom className="messages">
         {messages.map((message, i) => (
             <div key={i}>

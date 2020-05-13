@@ -3,6 +3,8 @@ import classnames from 'classnames';
 import styles from './ChatArea.module.scss';
 import { SettingsIcon } from '../../assets/images';
 import { ChatMock } from '../ChatList/ChatList';
+import MessageArea from '../MessageArea/MessageArea';
+import { IMessage } from '../MessageArea/Message/Message';
 
 interface ChatArea {
     target: ChatMock | null;
@@ -10,10 +12,22 @@ interface ChatArea {
 }
 
 const ChatArea: React.FC<ChatArea> = ({ target, setModalLayout }) => {
-
     const showUserProfile = () => {
         setModalLayout('profile');
     };
+
+    const messages: IMessage[] = [
+        {
+            text: 'Some text to display',
+            sender: 'self',
+            time: new Date(2020, 2, 5),
+        },
+        {
+            text: 'Also some text',
+            sender: 'nself',
+            time: new Date(2020, 2, 5),
+        },
+    ];
 
     return target ? (
         <div
@@ -36,11 +50,13 @@ const ChatArea: React.FC<ChatArea> = ({ target, setModalLayout }) => {
                         <p className="mb-0">last active {target.time}</p>
                     </div>
                 </div>
-                 <i className="fas fa-cog" 
+                <i
+                    className="fas fa-cog"
                     id="dropdownMenuButton"
                     data-toggle="dropdown"
                     aria-haspopup="true"
-                    aria-expanded="false"></i>{' '}
+                    aria-expanded="false"
+                ></i>{' '}
                 <div
                     className="dropdown-menu"
                     aria-labelledby="dropdownMenuButton"
@@ -58,7 +74,9 @@ const ChatArea: React.FC<ChatArea> = ({ target, setModalLayout }) => {
                     </a>
                 </div>
             </div>
-            <div className={classnames('d-flex flex-fill', styles.messagearea)}></div>
+            <div className={classnames('d-flex flex-fill', styles.messagearea)}>
+                <MessageArea messages={messages} />
+            </div>
             <div className="d-flex justify-content-between align-items-center border-top p-2">
                 <div className="input-group mr-2">
                     <input className="form-control rounded"></input>
