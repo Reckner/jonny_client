@@ -12,72 +12,110 @@ import Footer from '../Footer/Footer';
 const Chat: React.FC = () => {
     const [target, setTarget] = useState<ChatMock | null>(null);
     const [modalLayout, setModalLayout] = useState<string>('appsettings');
-    const [layout, setLayout]= useState<string>('default');
+    const [layout, setLayout] = useState<string>('default');
 
     const changeLayout = () => {
-        if(document.documentElement.clientWidth<420)
-        {
-            setLayout('mobile')
-        }
-        else{
+        if (document.documentElement.clientWidth < 420) {
+            setLayout('mobile');
+        } else {
             setLayout('pc');
         }
-    }
+    };
 
     const handleLayout = () => {
-        
         switch (layout) {
             case 'mobile':
-                    return (
-                        <div
+                return (
+                    <div
                         className={classnames(
                             'd-flex flex-column flex-fill overflow-auto',
-                            styles['chat']
+                            styles['chat'],
                         )}
                     >
                         <Router>
-                            <Route exact path="/chat" render = {() => <Header/>}/>
-                            <Route exact path="/chat" render = {() => <ChatList setTarget={setTarget}/>}/>
                             <Route
-                            path="/chat/:id"
-                            render = {() => <ChatArea target={target} setModalLayout={setModalLayout}/>}
+                                exact
+                                path="/chat"
+                                render={() => <Header />}
                             />
-                            <Route exact path="/chat" render = {() =>  <Footer target={target} setModalLayout={setModalLayout} modalLayout={modalLayout}/>}/>
+                            <Route
+                                exact
+                                path="/chat"
+                                render={() => (
+                                    <ChatList setTarget={setTarget} />
+                                )}
+                            />
+                            <Route
+                                path="/chat/:id"
+                                render={() => (
+                                    <ChatArea
+                                        target={target}
+                                        setModalLayout={setModalLayout}
+                                    />
+                                )}
+                            />
+                            <Route
+                                exact
+                                path="/chat"
+                                render={() => (
+                                    <Footer
+                                        target={target}
+                                        setModalLayout={setModalLayout}
+                                        modalLayout={modalLayout}
+                                    />
+                                )}
+                            />
                         </Router>
                     </div>
-                    );
+                );
             case 'pc':
                 return (
                     <Router>
-                        <QuickLinks target={target} modalLayout={modalLayout} setModalLayout={setModalLayout}/>
-                        <ChatList setTarget={setTarget}/>
+                        <QuickLinks
+                            target={target}
+                            modalLayout={modalLayout}
+                            setModalLayout={setModalLayout}
+                        />
+                        <ChatList setTarget={setTarget} />
                         <Route
                             path="/chat/:id"
-                            render={() => <ChatArea target={target} setModalLayout={setModalLayout}/>}
+                            render={() => (
+                                <ChatArea
+                                    target={target}
+                                    setModalLayout={setModalLayout}
+                                />
+                            )}
                         />
                     </Router>
                 );
             default:
-            return (
-                <Router>
-                    <QuickLinks target={target} modalLayout={modalLayout} setModalLayout={setModalLayout}/>
-                    <ChatList setTarget={setTarget}/>
-                    <Route
-                        path="/chat/:id"
-                        render={() => <ChatArea target={target} setModalLayout={setModalLayout}/>}
-                    />
-                </Router>
-            );
+                return (
+                    <Router>
+                        <QuickLinks
+                            target={target}
+                            modalLayout={modalLayout}
+                            setModalLayout={setModalLayout}
+                        />
+                        <ChatList setTarget={setTarget} />
+                        <Route
+                            path="/chat/:id"
+                            render={() => (
+                                <ChatArea
+                                    target={target}
+                                    setModalLayout={setModalLayout}
+                                />
+                            )}
+                        />
+                    </Router>
+                );
         }
     };
     useEffect(() => {
         changeLayout();
-        window.addEventListener("resize", changeLayout);
-        return () => window.removeEventListener("resize", changeLayout);
+        window.addEventListener('resize', changeLayout);
+        return () => window.removeEventListener('resize', changeLayout);
     });
-    return (
-        handleLayout()
-    );
+    return handleLayout();
 };
 
 export default Chat;

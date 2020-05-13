@@ -5,12 +5,6 @@ import { SettingsIcon } from '../../assets/images';
 import { ChatMock } from '../ChatList/ChatList';
 import io from 'socket.io-client';
 
-const user1 = {
-    name: 'Daniel Antonov',
-    message: 'Lorem ipsum dolorasdasdasdasdasd',
-    time: '10:30',
-};
-
 interface ChatArea {
     target: ChatMock | null;
     setModalLayout: React.Dispatch<React.SetStateAction<string>>;
@@ -47,11 +41,20 @@ const ChatArea: React.FC<ChatArea> = ({ target }) => {
             )}
         >
             <div className="d-flex justify-content-between align-items-center border-bottom px-3 py-2">
-                <img
-                    className={classnames('rounded-circle', styles.avatar)}
-                    src={target.photo}
-                    alt="Avatar"
-                />
+                <div className="d-flex">
+                    <button
+                        className={styles['return-button']}
+                        type="button"
+                        onClick={handleClose}
+                    >
+                        {'<'}
+                    </button>
+                    <img
+                        className={classnames('rounded-circle', styles.avatar)}
+                        src={target.photo}
+                        alt="Avatar"
+                    />
+                </div>
                 <div className="d-flex flex-column align-items-center">
                     <div className="profile-name">
                         <h5 className="name">{target.name}</h5>

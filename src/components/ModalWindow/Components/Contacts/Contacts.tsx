@@ -4,7 +4,7 @@ import styles from './Contacts.module.scss';
 import Contact from './Contact/Contact';
 import HeaderSettings from '../HeaderSettings/HeaderSettings';
 import { ChatMock } from '../../../ChatList/ChatList';
-import { users } from '../../../../assets/users';
+import { users } from '../../../../assets/mocks/users';
 import { Link } from 'react-router-dom';
 
 interface Contacts {

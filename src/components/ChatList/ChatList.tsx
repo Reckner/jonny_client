@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import styles from './ChatList.module.scss';
 import ChatElement from '../ChatElement/ChatElement';
 import { Link } from 'react-router-dom';
-import { users } from '../../assets/users';
+import { users } from '../../assets/mocks/users';
 
 export interface ChatMock {
     id: number;
@@ -11,25 +11,32 @@ export interface ChatMock {
     message: string;
     time: string;
     photo: string;
-    isRegistered: boolean;
 }
 
 interface ChatList {
     setTarget: React.Dispatch<React.SetStateAction<ChatMock | null>>;
 }
 
-const ChatList: React.FC<ChatList> = ({ setTarget}) => {
+const ChatList: React.FC<ChatList> = ({ setTarget }) => {
     const [chats, setChats] = useState<ChatMock[]>(users);
+
+    const handleDeleteChat = (id) => {
+        var items = chats.filter((chat) => chat.id !== id);
+        setChats(items);
+    };
 
     return (
         <div
             className={classnames(
                 'd-flex flex-column flex-fill overflow-auto border-top border-bottom',
-                styles['user-container']
+                styles['user-container'],
             )}
         >
             {chats.map((chat) => (
-                <Link to={`/chat/${chat.id}`} className="text-decoration-none">
+                <Link
+                    to={`/chat/${chat.id}`}
+                    className="text-decoration-none"
+                >
                     <ChatElement
                         chats={chats}
                         setTarget={setTarget}
