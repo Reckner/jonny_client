@@ -2,6 +2,11 @@
     .user-container {
         background-color: rgb(224, 245, 255);
         min-width: 200px;
-        max-width: 420px;
+        max-width: 300px;
+    }
+    @media only screen and (max-width: 650px) {
+        .user-container {
+            max-width: inherit;
+        }
     }
 }

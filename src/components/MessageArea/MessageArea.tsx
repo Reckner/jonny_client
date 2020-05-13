@@ -1,17 +1,17 @@
 import React from 'react';
-import './MessageArea.scss';
 import Message from './Message/Message';
-import ScrollToBottom from 'react-scroll-to-bottom';
 import { IMessage } from './Message/Message';
 
-const MessageArea: React.FC<IMessage[]> = (messages) => (
-    <ScrollToBottom className="messages">
+interface IMessageArea {
+    messages: IMessage[];
+}
+
+const MessageArea: React.FC<IMessageArea> = ({ messages }) => (
+    <div className="d-flex flex-column flex-fill overflow-auto">
         {messages.map((message, i) => (
-            <div key={i}>
-                <Message message={message} />
-            </div>
+            <Message message={message} key={i} />
         ))}
-    </ScrollToBottom>
+    </div>
 );
 
 export default MessageArea;

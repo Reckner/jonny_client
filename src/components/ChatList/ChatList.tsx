@@ -28,7 +28,7 @@ const ChatList: React.FC<ChatList> = ({ setTarget }) => {
     return (
         <div
             className={classnames(
-                'd-flex flex-column flex-fill overflow-auto border-top border-bottom',
+                'd-flex flex-column flex-fill overflow-auto w-100 border-top border-bottom',
                 styles['user-container'],
             )}
         >

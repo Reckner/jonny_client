@@ -15,7 +15,7 @@ const Chat: React.FC = () => {
     const [layout, setLayout] = useState<string>('default');
 
     const changeLayout = () => {
-        if (document.documentElement.clientWidth < 420) {
+        if (document.documentElement.clientWidth < 650) {
             setLayout('mobile');
         } else {
             setLayout('pc');

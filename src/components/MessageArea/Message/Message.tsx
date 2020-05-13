@@ -1,6 +1,8 @@
+import classnames from 'classnames';
 import React from 'react';
-import './Message.scss';
 import ReactEmoji from 'react-emoji';
+
+import styles from './Message.module.scss';
 
 export interface IMessage {
     text: string;
@@ -21,24 +23,28 @@ const Message: React.FC<Message> = ({ message }) => {
     }
 
     return isSentByCurrentUser ? (
-        <div className="messageContainer justifyEnd">
-            <p className="sentText pr-10" />
-            <div className="messageBox backgroundBlue">
-                <p className="messageText colorWhite">
-                    {ReactEmoji.emojify(text)}
-                </p>
+        <div className="d-flex justify-content-end">
+            <div
+                className={classnames(
+                    'm-2 py-1 px-2 rounded',
+                    styles.maxWidth,
+                    styles.bgColor,
+                )}
+            >
+                <p className="mb-0 text-white">{ReactEmoji.emojify(text)}</p>
             </div>
         </div>
     ) : (
-        <div className="messageContainer justifyStart">
-            <div className="messageBox backgroundLight">
-                <p className="messageText colorDark">
-                    {ReactEmoji.emojify(text)}
-                </p>
+        <div className="d-flex justify-content-start">
+            {/* <p className="sentText pl-10 ">{sender}</p> */}
+            <div
+                className={classnames(
+                    'm-2 py-1 px-2 rounded bg-light',
+                    styles.maxWidth,
+                )}
+            >
+                <p className="mb-0 colorDark">{ReactEmoji.emojify(text)}</p>
             </div>
-            <p className="sentText pl-10 ">
-                {time} - {sender}
-            </p>
         </div>
     );
 };

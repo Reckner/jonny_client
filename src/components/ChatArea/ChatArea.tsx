@@ -4,13 +4,15 @@ import styles from './ChatArea.module.scss';
 import { SettingsIcon } from '../../assets/images';
 import { ChatMock } from '../ChatList/ChatList';
 import io from 'socket.io-client';
+import MessageArea from '../MessageArea/MessageArea';
+import { IMessage } from '../MessageArea/Message/Message';
 
 interface ChatArea {
     target: ChatMock | null;
     setModalLayout: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const ChatArea: React.FC<ChatArea> = ({ target }) => {
+const ChatArea: React.FC<ChatArea> = ({ target, setModalLayout }) => {
     let socket;
 
     const [messageText, setMessageText] = useState<string>('');
@@ -26,12 +28,120 @@ const ChatArea: React.FC<ChatArea> = ({ target }) => {
     };
 
     const handleClose = (e) => {
-        window.location.replace('/');
+        window.location.replace('/chat');
     };
 
     const handleTextChange = (e) => {
         setMessageText(e.target.value);
     };
+
+    const showUserProfile = () => {
+        setModalLayout('profile');
+    };
+
+    const messages: IMessage[] = [
+        {
+            text:
+                'Some text to displaySome text to displaySome text to displaySome text to displaySome text to displaySome text to displaySome text to displaySome text to displaySome text to displaySome text to displaySome text to displaySome text to displaySome text to display',
+            sender: 'self',
+            time: new Date(2020, 2, 5),
+        },
+        {
+            text: 'Also some text',
+            sender: 'nself',
+            time: new Date(2020, 2, 5),
+        },
+        {
+            text: 'Some text to display',
+            sender: 'self',
+            time: new Date(2020, 2, 5),
+        },
+        {
+            text: 'Also some text',
+            sender: 'nself',
+            time: new Date(2020, 2, 5),
+        },
+        {
+            text: 'Some text to display',
+            sender: 'self',
+            time: new Date(2020, 2, 5),
+        },
+        {
+            text: 'Also some text',
+            sender: 'nself',
+            time: new Date(2020, 2, 5),
+        },
+        {
+            text: 'Some text to display',
+            sender: 'self',
+            time: new Date(2020, 2, 5),
+        },
+        {
+            text: 'Also some text',
+            sender: 'nself',
+            time: new Date(2020, 2, 5),
+        },
+        {
+            text: 'Some text to display',
+            sender: 'self',
+            time: new Date(2020, 2, 5),
+        },
+        {
+            text: 'Also some text',
+            sender: 'nself',
+            time: new Date(2020, 2, 5),
+        },
+        {
+            text: 'Some text to display',
+            sender: 'self',
+            time: new Date(2020, 2, 5),
+        },
+        {
+            text: 'Also some text',
+            sender: 'nself',
+            time: new Date(2020, 2, 5),
+        },
+        {
+            text: 'Some text to display',
+            sender: 'self',
+            time: new Date(2020, 2, 5),
+        },
+        {
+            text: 'Also some text',
+            sender: 'nself',
+            time: new Date(2020, 2, 5),
+        },
+        {
+            text: 'Some text to display',
+            sender: 'self',
+            time: new Date(2020, 2, 5),
+        },
+        {
+            text: 'Also some text',
+            sender: 'nself',
+            time: new Date(2020, 2, 5),
+        },
+        {
+            text: 'Some text to display',
+            sender: 'self',
+            time: new Date(2020, 2, 5),
+        },
+        {
+            text: 'Also some text',
+            sender: 'nself',
+            time: new Date(2020, 2, 5),
+        },
+        {
+            text: 'Some text to display',
+            sender: 'self',
+            time: new Date(2020, 2, 5),
+        },
+        {
+            text: 'Also some text',
+            sender: 'nself',
+            time: new Date(2020, 2, 5),
+        },
+    ];
 
     return target ? (
         <div
@@ -87,9 +197,9 @@ const ChatArea: React.FC<ChatArea> = ({ target }) => {
                     </a>
                 </div>
             </div>
-            <div
-                className={classnames('d-flex flex-fill', styles.messagearea)}
-            ></div>
+            <div className={classnames('d-flex flex-fill', styles.messagearea)}>
+                <MessageArea messages={messages} />
+            </div>
             <div className="d-flex justify-content-between align-items-center border-top p-2">
                 <div className="input-group mr-2">
                     <input className="form-control rounded"></input>
