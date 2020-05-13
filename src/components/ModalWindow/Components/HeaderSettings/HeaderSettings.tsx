@@ -14,7 +14,7 @@ const HeaderSettings: React.FC<HeaderSettings> = ({ target }) => {
         <>
             <div
                 className={classnames(
-                    'd-flex justify-content-around align-items-center flex-fill my-2',
+                    'd-flex justify-content-around align-items-center flex-fill my-2 py-2',
                     styles['header-settings'],
                 )}
             >

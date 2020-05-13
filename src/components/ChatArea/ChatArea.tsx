@@ -58,7 +58,7 @@ const ChatArea: React.FC<ChatArea> = ({ target, setModalLayout }) => {
                     </a>
                 </div>
             </div>
-            <div className="d-flex flex-fill"></div>
+            <div className={classnames('d-flex flex-fill', styles.messagearea)}></div>
             <div className="d-flex justify-content-between align-items-center border-top p-2">
                 <div className="input-group mr-2">
                     <input className="form-control rounded"></input>

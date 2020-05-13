@@ -3,6 +3,7 @@ import { AppSettings, UserSettings, Contacts } from './Components';
 import { ChatMock } from '../ChatList/ChatList';
 import './Modal.scss';
 import AddNewContact from './Components/Contacts/AddNewContact/AddNewContact';
+import Profile from './Components/Profile/Profile';
 
 interface Modal {
     target: ChatMock | null;
@@ -29,7 +30,7 @@ const Modal: React.FC<Modal> = ({ target, modalLayout, setModalLayout }) => {
                 );
             case 'profile':
                 return (
-                    <Contacts target={target} setModalLayout={setModalLayout} />
+                    <Profile target={target}/>
                 );
             case 'contacts':
                 return (

@@ -11,14 +11,16 @@ const BioDetails: React.FC = () => {
                     styles['bio-details'],
                 )}
             >
-                <div className="d-flex">
-                    <form>
-                        <label className={styles.bio}>BIO</label>
-                        <input
-                            type="text"
-                            value="A few words about you"
-                        ></input>
-                    </form>
+                <div className="input-group">
+                    <div className="input-group-prepend">
+                        <span className="input-group-text" id="">
+                            Username
+                        </span>
+                    </div>
+                    <input
+                        type="text"
+                        className="form-control"
+                    ></input>
                 </div>
             </div>
         </>

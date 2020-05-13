@@ -12,7 +12,7 @@ const ProfileDetails: React.FC<ProfileDetails> = ({ target }) => {
         <>
             <div
                 className={classnames(
-                    'd-flex align-items-center px-5 flex-fill',
+                    'd-flex align-items-center px-5 py-3 flex-fill',
                     styles['profile-details'],
                 )}
             >

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
 import styles from './ChatList.module.scss';
 import ChatElement from '../ChatElement/ChatElement';
@@ -18,14 +18,14 @@ interface ChatList {
     setTarget: React.Dispatch<React.SetStateAction<ChatMock | null>>;
 }
 
-const ChatList: React.FC<ChatList> = ({ setTarget }) => {
+const ChatList: React.FC<ChatList> = ({ setTarget}) => {
     const [chats, setChats] = useState<ChatMock[]>(users);
 
     return (
         <div
             className={classnames(
-                'd-flex flex-column flex-fill overflow-auto w-100 border-top border-bottom',
-                styles['user-container'],
+                'd-flex flex-column flex-fill overflow-auto border-top border-bottom',
+                styles['user-container']
             )}
         >
             {chats.map((chat) => (
