@@ -3,24 +3,11 @@
         max-width: 50px;
         background-color: rgb(224, 245, 255);
     }
-
-    .defaultLogo {
-        img {
-            max-width: 25px;
-            max-height: 25px;
-            &:hover {
-                transform: scale(1.1);
-            }
-        }
-    }
-
-    .profileLogo {
-        img {
-            max-width: 40px;
-            max-height: 40px;
-            &:hover {
-                transform: scale(1.1);
-            }
+    i {
+        max-width: 35px;
+        max-height: 35px;
+        &:hover {
+            transform: scale(1.1);
         }
     }
 }

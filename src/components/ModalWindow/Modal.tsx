@@ -1,10 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { AppSettings, UserSettings, Contacts } from './Components';
+import { ChatMock } from '../ChatList/ChatList';
+import './Modal.scss';
+import AddNewContact from './Components/Contacts/AddNewContact/AddNewContact';
+import Profile from './Components/Profile/Profile';
 
-const user1 = {
-    name: 'Vladislav Jekimtsev'
-};
+interface Modal {
+    target: ChatMock | null;
+    modalLayout: string;
+    setModalLayout: React.Dispatch<React.SetStateAction<string>>;
+}
 
-const Modal: React.FC = () => {
+const Modal: React.FC<Modal> = ({ target, modalLayout, setModalLayout }) => {
+    const handleContent = () => {
+        switch (modalLayout) {
+            case 'appsettings':
+                return (
+                    <AppSettings
+                        target={target}
+                        setModalLayout={setModalLayout}
+                    />
+                );
+            case 'usersettings':
+                return (
+                    <UserSettings
+                        target={target}
+                        setModalLayout={setModalLayout}
+                    />
+                );
+            case 'profile':
+                return (
+                    <Profile target={target}/>
+                );
+            case 'contacts':
+                return (
+                    <Contacts target={target} setModalLayout={setModalLayout} />
+                );
+            case 'addnewcontact':
+                return (
+                    <AddNewContact target={target} setModalLayout={setModalLayout}/>
+                );
+            default:
+                return (
+                    <AppSettings
+                        target={target}
+                        setModalLayout={setModalLayout}
+                    />
+                );
+        }
+    };
+
     return (
         <div
             className="modal fade show"
@@ -14,65 +59,7 @@ const Modal: React.FC = () => {
             aria-hidden="true"
         >
             <div className="modal-dialog modal-dialog-centered" role="document">
-                <div className="modal-content">
-                    <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLongTitle">
-                            {user1.name}
-                        </h5>
-                        <button
-                            type="button"
-                            className="close"
-                            data-dismiss="modal"
-                            aria-label="Close"
-                        >
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div className="modal-body">
-                        <div>
-                            <button className="btn btn-primary">
-                                Edit profile
-                            </button>
-                        </div>
-                        <div>
-                            <button className="btn btn-primary">
-                                Notifications
-                            </button>
-                        </div>
-                        <div>
-                            <button className="btn btn-primary">
-                                Privacy and Security
-                            </button>
-                        </div>
-                        <div>
-                            <button className="btn btn-primary">
-                                Chat Settings
-                            </button>
-                        </div>
-                        <div>
-                            <button className="btn btn-primary">
-                                Advanced
-                            </button>
-                        </div>
-                        <div>
-                            <button className="btn btn-primary">
-                                Language
-                            </button>
-                        </div>
-                    </div>
-                    <div className="modal-footer">
-                        <button
-                            type="button"
-                            className="btn btn-secondary"
-                            data-dismiss="modal"
-                        >
-                            Close
-                        </button>
-                        <button type="button" className="btn btn-primary">
-                            Save changes
-                        </button>
-                    </div>
-                </div>
+                <div className="modal-content">{handleContent()}</div>
             </div>
         </div>
     );

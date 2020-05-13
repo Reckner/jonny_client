@@ -13,6 +13,7 @@ const user1 = {
 
 interface ChatArea {
     target: ChatMock | null;
+    setModalLayout: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const ChatArea: React.FC<ChatArea> = ({ target }) => {
@@ -46,45 +47,51 @@ const ChatArea: React.FC<ChatArea> = ({ target }) => {
             )}
         >
             <div className="d-flex justify-content-between align-items-center border-bottom px-3 py-2">
-                <div className="d-flex">
-                    <button
-                        className={styles['return-button']}
-                        type="button"
-                        onClick={handleClose}
-                    >
-                        {'<'}
-                    </button>
-                    <img
-                        className={classnames('rounded-circle', styles.avatar)}
-                        src={target.photo}
-                        alt="Avatar"
-                    />
-                </div>
+                <img
+                    className={classnames('rounded-circle', styles.avatar)}
+                    src={target.photo}
+                    alt="Avatar"
+                />
                 <div className="d-flex flex-column align-items-center">
                     <div className="profile-name">
-                        <h4 className="name">{target.name}</h4>
+                        <h5 className="name">{target.name}</h5>
                     </div>
                     <div className="last-active">
                         <p className="mb-0">last active {target.time}</p>
                     </div>
                 </div>
-                <div className="profile-settings">
-                    <img className={styles.settings} src={SettingsIcon} />
+                <i
+                    className="fas fa-cog"
+                    id="dropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                ></i>{' '}
+                <div
+                    className="dropdown-menu"
+                    aria-labelledby="dropdownMenuButton"
+                >
+                    <a
+                        className="dropdown-item"
+                        data-toggle="modal"
+                        data-target="#exampleModalCenter"
+                        // onClick={showUserProfile}
+                    >
+                        View Profile
+                    </a>
+                    <a className="dropdown-item" href="">
+                        Delete Chat
+                    </a>
                 </div>
             </div>
-            <div className="d-flex flex-fill"></div>
+            <div
+                className={classnames('d-flex flex-fill', styles.messagearea)}
+            ></div>
             <div className="d-flex justify-content-between align-items-center border-top p-2">
                 <div className="input-group mr-2">
-                    <input
-                        className="form-control rounded"
-                        onChange={handleTextChange}
-                    />
+                    <input className="form-control rounded"></input>
                 </div>
-                <button
-                    className="btn-primary rounded"
-                    type="button"
-                    onClick={handleSubmit}
-                >
+                <button className="btn-primary rounded" type="button">
                     Send
                 </button>
             </div>

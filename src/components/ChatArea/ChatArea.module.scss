@@ -2,13 +2,11 @@
     .chat-area {
         background-color: rgb(224, 245, 255);
     }
-
     .avatar {
         width: 3rem;
         height: 3rem;
         object-fit: cover;
     }
-
     .settings {
         max-width: 1.88rem;
         max-height: 1.88rem;
@@ -29,5 +27,8 @@
     {
         display: inherit;
     }
+    }
+    .messagearea {
+        min-height: 500px;
     }
 }

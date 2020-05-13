@@ -1,14 +1,7 @@
 :root {
     .user-container {
         background-color: rgb(224, 245, 255);
-
         min-width: 200px;
-        max-width: 300px;
-    }
-    @media only screen and (max-width: 600px) {
-        .user-container {
-            max-width: inherit;
-            width: 100%;
-        }
+        max-width: 420px;
     }
 }
