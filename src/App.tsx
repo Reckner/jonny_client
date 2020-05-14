@@ -26,6 +26,7 @@ const App: React.FC = () => {
                         resolve(false);
                     }
                 } catch (err) {
+                    localStorage.removeItem('x-access-token');
                     reject(err);
                 }
             } else {

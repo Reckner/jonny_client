@@ -8,11 +8,24 @@ import QuickLinks from '../QuickLinks/QuickLinks';
 import HeaderSettings from '../ModalWindow/Components/HeaderSettings/HeaderSettings';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import { users } from '../../assets/mocks/users';
 
-const Chat: React.FC = () => {
+interface Chat {
+    setTarget: React.Dispatch<React.SetStateAction<ChatMock | null>>;
+}
+
+const Chat: React.FC<Chat> = () => {
     const [target, setTarget] = useState<ChatMock | null>(null);
     const [modalLayout, setModalLayout] = useState<string>('appsettings');
     const [layout, setLayout] = useState<string>('default');
+    const [chats, setChats] = useState<ChatMock[]>(users);
+
+    const handleDeleteChat = (e, id) => {
+        e.preventDefault();
+        setTarget(null);
+        var items = chats.filter((chat) => chat.id !== id);
+        setChats(items);
+    };
 
     const changeLayout = () => {
         if (document.documentElement.clientWidth < 650) {
@@ -42,7 +55,10 @@ const Chat: React.FC = () => {
                                 exact
                                 path="/chat"
                                 render={() => (
-                                    <ChatList setTarget={setTarget} />
+                                    <ChatList
+                                        chats={chats}
+                                        setTarget={setTarget}
+                                    />
                                 )}
                             />
                             <Route
@@ -51,6 +67,7 @@ const Chat: React.FC = () => {
                                     <ChatArea
                                         target={target}
                                         setModalLayout={setModalLayout}
+                                        handleDeleteChat={handleDeleteChat}
                                     />
                                 )}
                             />
@@ -76,11 +93,12 @@ const Chat: React.FC = () => {
                             modalLayout={modalLayout}
                             setModalLayout={setModalLayout}
                         />
-                        <ChatList setTarget={setTarget} />
+                        <ChatList chats={chats} setTarget={setTarget} />
                         <Route
                             path="/chat/:id"
                             render={() => (
                                 <ChatArea
+                                    handleDeleteChat={handleDeleteChat}
                                     target={target}
                                     setModalLayout={setModalLayout}
                                 />
@@ -96,11 +114,12 @@ const Chat: React.FC = () => {
                             modalLayout={modalLayout}
                             setModalLayout={setModalLayout}
                         />
-                        <ChatList setTarget={setTarget} />
+                        <ChatList chats={chats} setTarget={setTarget} />
                         <Route
                             path="/chat/:id"
                             render={() => (
                                 <ChatArea
+                                    handleDeleteChat={handleDeleteChat}
                                     target={target}
                                     setModalLayout={setModalLayout}
                                 />
