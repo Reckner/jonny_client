@@ -55,10 +55,18 @@ const Chat: React.FC<Chat> = () => {
                                 exact
                                 path="/chat"
                                 render={() => (
-                                    <ChatList
-                                        chats={chats}
-                                        setTarget={setTarget}
-                                    />
+                                    <>
+                                        <ChatList
+                                            chats={chats}
+                                            setTarget={setTarget}
+                                        />
+                                        <div
+                                            className={classnames(
+                                                'd-flex flex-fill',
+                                                styles.emptyChatArea,
+                                            )}
+                                        ></div>
+                                    </>
                                 )}
                             />
                             <Route
@@ -94,6 +102,12 @@ const Chat: React.FC<Chat> = () => {
                             setModalLayout={setModalLayout}
                         />
                         <ChatList chats={chats} setTarget={setTarget} />
+                        <div
+                            className={classnames(
+                                'd-flex flex-fill',
+                                styles.emptyChatArea,
+                            )}
+                        ></div>
                         <Route
                             path="/chat/:id"
                             render={() => (
@@ -115,6 +129,12 @@ const Chat: React.FC<Chat> = () => {
                             setModalLayout={setModalLayout}
                         />
                         <ChatList chats={chats} setTarget={setTarget} />
+                        <div
+                            className={classnames(
+                                'd-flex flex-fill',
+                                styles.emptyChatArea,
+                            )}
+                        ></div>
                         <Route
                             path="/chat/:id"
                             render={() => (

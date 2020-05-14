@@ -16,7 +16,11 @@ interface QuickLinks {
     setModalLayout: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const QuickLinks: React.FC<QuickLinks> = ({ target, modalLayout, setModalLayout }) => {
+const QuickLinks: React.FC<QuickLinks> = ({
+    target,
+    modalLayout,
+    setModalLayout,
+}) => {
     const params = useParams<RouteParams>();
 
     const showContacts = () => {
@@ -43,50 +47,58 @@ const QuickLinks: React.FC<QuickLinks> = ({ target, modalLayout, setModalLayout 
         <>
             <div
                 className={classnames(
-                    'd-flex flex-column justify-content-between py-4 px-4 border',
+                    'd-flex flex-column justify-content-between py-4 px-4',
                     styles.quickLinks,
                 )}
             >
                 <div className="d-flex flex-column align-items-center">
-                    <div className={classnames('pb-4', styles.defaultLogo)}
+                    <div
+                        className={classnames('pb-4', styles.defaultLogo)}
                         data-toggle="modal"
                         data-target="#exampleModalCenter"
-                        onClick={showContacts}>
+                        onClick={showContacts}
+                    >
                         <i className="fas fa-users"></i>
                     </div>
-                    <div className={classnames('pb-4', styles.defaultLogo)}
+                    <div
+                        className={classnames('pb-4', styles.defaultLogo)}
                         data-toggle="modal"
                         data-target="#exampleModalCenter"
-                        onClick={showAddNewContact}>
+                        onClick={showAddNewContact}
+                    >
                         <i className="fas fa-user-plus"></i>{' '}
                     </div>
                     <div className={classnames('pb-4', styles.defaultLogo)}>
-                        <i className="fa fa-comments"
+                        <i
+                            className="fa fa-comments"
                             id="dropdownMenuButton"
                             data-toggle="dropdown"
                             aria-haspopup="true"
-                            aria-expanded="false"></i>{' '}
+                            aria-expanded="false"
+                        ></i>{' '}
                         <div
                             className="dropdown-menu"
-                            aria-labelledby="dropdownMenuButton">
-                                <a
-                                    className="dropdown-item"
-                                    data-toggle="modal"
-                                    data-target="#exampleModalCenter"
-                                    onClick={showAddNewChat}
-                                >
-                                    New Chat
-                                </a>
-                                <a className="dropdown-item" href="">
-                                    New Group
-                                </a>
+                            aria-labelledby="dropdownMenuButton"
+                        >
+                            <a
+                                className="dropdown-item"
+                                data-toggle="modal"
+                                data-target="#exampleModalCenter"
+                                onClick={showAddNewChat}
+                            >
+                                New Chat
+                            </a>
+                            <a className="dropdown-item" href="">
+                                New Group
+                            </a>
                         </div>
                     </div>
                     <div
                         className={classnames('pb-4', styles.defaultLogo)}
                         data-toggle="modal"
                         data-target="#exampleModalCenter"
-                        onClick={showSettings}>
+                        onClick={showSettings}
+                    >
                         <i className="fas fa-cog"></i>{' '}
                     </div>
                     <div className={styles.defaultLogo}>
@@ -94,16 +106,22 @@ const QuickLinks: React.FC<QuickLinks> = ({ target, modalLayout, setModalLayout 
                     </div>
                 </div>
                 <div className="d-flex flex-column align-items-center">
-                    <div className={styles.profileLogo}
+                    <div
+                        className={styles.profileLogo}
                         data-toggle="modal"
                         data-target="#exampleModalCenter"
-                        onClick={showUserProfile}>
+                        onClick={showUserProfile}
+                    >
                         <i className="fas fa-user pa-5"></i>
                     </div>
                 </div>
             </div>
 
-            <Modal target={target} modalLayout={modalLayout} setModalLayout={setModalLayout}/>
+            <Modal
+                target={target}
+                modalLayout={modalLayout}
+                setModalLayout={setModalLayout}
+            />
         </>
     );
 };
