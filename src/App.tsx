@@ -9,7 +9,15 @@ import jwt from 'jsonwebtoken';
 
 import { Chat, Hero, PrivateRoute } from './components';
 
+export interface User {
+    identifier: string;
+    username: string;
+    email: string;
+}
+
 const App: React.FC = () => {
+    const [user, setUser] = useState<User | null>(null);
+
     const authenticated = async (): Promise<boolean> => {
         return new Promise((resolve, reject) => {
             const token = localStorage.getItem('x-access-token') || '';
@@ -47,7 +55,9 @@ const App: React.FC = () => {
         <Router>
             <Switch>
                 <Route
-                    render={() => <Hero auth={auth} setAuth={setAuth} />}
+                    render={() => (
+                        <Hero auth={auth} setAuth={setAuth} setUser={setUser} />
+                    )}
                     path="/login"
                 />
                 <Route
