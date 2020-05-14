@@ -6,9 +6,10 @@ import { Link } from 'react-router-dom';
 
 interface HeaderSettings {
     target: ChatMock | null;
+    headerName: string;
 }
 
-const HeaderSettings: React.FC<HeaderSettings> = ({ target }) => {
+const HeaderSettings: React.FC<HeaderSettings> = ({ target, headerName }) => {
     const userId = target?.id;
     return (
         <>
@@ -24,7 +25,7 @@ const HeaderSettings: React.FC<HeaderSettings> = ({ target }) => {
                     </button>
                 </div>
                 <div className="header-name">
-                    <h5>Settings</h5>
+                    <h5>{headerName}</h5>
                 </div>
                 <div className="header-done">
                     <button type="button" data-dismiss="modal">

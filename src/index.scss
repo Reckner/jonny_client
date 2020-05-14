@@ -1,13 +1,10 @@
 @import './assets/variables.scss';
 @import '~bootstrap/scss/bootstrap';
-
 body {
-    background: linear-gradient(to right, #ff105f, #ffad06);
-    font-family: 'Open Sans', 'Lucida Grande', 'Lucida Sans Unicode', Arial,
-        Helvetica, Verdana, sans-serif;
+    background: linear-gradient( #E0F5FF, #ffffff);
+    font-family: 'Open Sans', 'Lucida Grande', 'Lucida Sans Unicode', Arial, Helvetica, Verdana, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-
     #root {
         max-height: 100vh;
         height: 100vh;

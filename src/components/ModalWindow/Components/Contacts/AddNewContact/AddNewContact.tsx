@@ -13,7 +13,7 @@ interface AddNewContact{
 const AddNewContact: React.FC<AddNewContact> = ({target, setModalLayout}) => {
     return (
         <>
-        <HeaderSettings target={target}/>
+        <HeaderSettings target={target} headerName="Add new contact"/>
         <div
                 className={classnames(
                     'd-flex align-items-center flex-column px-3 py-2 border-bottom',

@@ -21,7 +21,7 @@ const ChatSettings: React.FC<ChatSettings> = ({ target }) => {
                     styles['chat-settings'],
                 )}
             >
-                <HeaderSettings target={target} />
+                <HeaderSettings target={target} headerName="Chat settings"/>
                 <ProfileDetails target={target} />
                 <ImportantNotes />
                 <hr />

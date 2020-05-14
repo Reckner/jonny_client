@@ -188,7 +188,7 @@ const ChatArea: React.FC<ChatArea> = ({ target, setModalLayout }) => {
                         className="dropdown-item"
                         data-toggle="modal"
                         data-target="#exampleModalCenter"
-                        // onClick={showUserProfile}
+                        onClick={showUserProfile}
                     >
                         View Profile
                     </a>

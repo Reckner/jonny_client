@@ -4,6 +4,7 @@ import { ChatMock } from '../ChatList/ChatList';
 import './Modal.scss';
 import AddNewContact from './Components/Contacts/AddNewContact/AddNewContact';
 import Profile from './Components/Profile/Profile';
+import AddNewChat from './Components/AddNewChat/AddNewChat';
 
 interface Modal {
     target: ChatMock | null;
@@ -39,6 +40,10 @@ const Modal: React.FC<Modal> = ({ target, modalLayout, setModalLayout }) => {
             case 'addnewcontact':
                 return (
                     <AddNewContact target={target} setModalLayout={setModalLayout}/>
+                );
+            case 'addnewchat':
+                return (
+                    <AddNewChat target={target} setModalLayout={setModalLayout}/>
                 );
             default:
                 return (

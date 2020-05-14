@@ -22,7 +22,7 @@ const UserSettings: React.FC<UserSettings> = ({ target, setModalLayout }) => {
                     styles['user-settings'],
                 )}
             >
-                <HeaderSettings target={target} />
+                <HeaderSettings target={target} headerName="User settings"/>
                 <ProfileDetails target={target} />
                 <ImportantNotes />
                 <BioDetails />

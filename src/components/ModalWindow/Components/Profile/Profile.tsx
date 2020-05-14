@@ -17,7 +17,7 @@ const Profile: React.FC<Profile> = ({ target }) => {
                 styles['profile'],
             )}
         >
-        <HeaderSettings target={target}/>
+        <HeaderSettings target={target} headerName="Profile"/>
         <ProfileDetails target={target}/>
         </div>
     );

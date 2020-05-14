@@ -4,6 +4,7 @@ import styles from './QuickLinks.module.scss';
 import Modal from '../ModalWindow/Modal';
 import { ChatMock } from '../ChatList/ChatList';
 import { useParams } from 'react-router-dom';
+import AddNewChat from '../ModalWindow/Components/AddNewChat/AddNewChat';
 
 interface RouteParams {
     id: string;
@@ -34,6 +35,10 @@ const QuickLinks: React.FC<QuickLinks> = ({ target, modalLayout, setModalLayout 
         setModalLayout('profile');
     };
 
+    const showAddNewChat = () => {
+        setModalLayout('addnewchat');
+    };
+
     return (
         <>
             <div
@@ -54,6 +59,28 @@ const QuickLinks: React.FC<QuickLinks> = ({ target, modalLayout, setModalLayout 
                         data-target="#exampleModalCenter"
                         onClick={showAddNewContact}>
                         <i className="fas fa-user-plus"></i>{' '}
+                    </div>
+                    <div className={classnames('pb-4', styles.defaultLogo)}>
+                        <i className="fa fa-comments"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"></i>{' '}
+                        <div
+                            className="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton">
+                                <a
+                                    className="dropdown-item"
+                                    data-toggle="modal"
+                                    data-target="#exampleModalCenter"
+                                    onClick={showAddNewChat}
+                                >
+                                    New Chat
+                                </a>
+                                <a className="dropdown-item" href="">
+                                    New Group
+                                </a>
+                        </div>
                     </div>
                     <div
                         className={classnames('pb-4', styles.defaultLogo)}

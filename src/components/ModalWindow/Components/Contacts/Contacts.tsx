@@ -22,7 +22,7 @@ const Contacts: React.FC<Contacts> = ({ target, setModalLayout }) => {
                     styles['contacts'],
                 )}
             >
-                <HeaderSettings target={target} />
+                <HeaderSettings target={target} headerName="Contacts"/>
                 <div className="d-flex flex-column flex-fill overflow-auto w-100 border-top border-bottom">
                     {contacts.map((contact)=>(
                         <Contact 

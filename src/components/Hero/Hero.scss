@@ -1,10 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
-
 .login-page {
     width: 360px;
     padding: 8% 0 0;
     margin: auto;
 }
+
 .form {
     position: relative;
     z-index: 1;
@@ -14,7 +14,6 @@
     padding: 45px;
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-
     .input-wrapper {
         position: relative;
         pointer-events: none;
@@ -29,7 +28,7 @@
         display: block;
         width: 0%;
         margin-top: -2px;
-        border-bottom: 2px solid #ffaa00;
+        border-bottom: 2px solid #E0F5FF;
         transition: 0.5s;
         margin-bottom: 15px;
     }
@@ -37,6 +36,7 @@
         width: 100%;
     }
 }
+
 label {
     position: absolute;
     text-align: left;
@@ -58,32 +58,27 @@ label {
     margin: 0;
     padding: 15px;
     box-sizing: border-box;
-
     font-size: 14px;
-
     &:after {
         content: '';
         display: block;
         width: 100%;
         padding-top: 49px;
-        border-bottom: 2px solid #ffaa00;
+        border-bottom: 2px solid #E0F5FF;
         transition: 0.5s;
     }
-
     &:focus:after {
         width: 100%;
     }
-
     &:invalid {
         outline: 0;
     }
-
-    &:focus ~ label,
-    &:valid ~ label {
+    &:focus~label,
+    &:valid~label {
         font-size: 16px;
         top: -4px;
         left: 4%;
-        color: #ff7b00;
+        color: black;
         font-weight: 600;
         text-transform: capitalize;
         &:after {
@@ -96,31 +91,35 @@ label {
     font-family: 'Roboto', sans-serif;
     text-transform: uppercase;
     outline: 0;
-    background: linear-gradient(to right, #ff105f, #ffad06);
+    background: linear-gradient(to right, #E0F5FF, #ffffff);
     width: 100%;
     border: 0;
     padding: 15px;
     margin: 2px 0;
-    color: #ffffff;
+    color: black;
     font-size: 14px;
     -webkit-transition: all 0.3 ease;
     transition: all 0.3 ease;
     cursor: pointer;
 }
+
 .form button:hover,
 .form button:active,
 .form button:focus {
-    background: linear-gradient(to right, #e7004d, #ffaa00);
+    background: linear-gradient( #E0F5FF, #ffffff);
 }
+
 .form .message {
     margin: 15px 0 0;
-    color: #b3b3b3;
+    color: black;
     font-size: 12px;
 }
+
 .form .message a {
-    color: #ffad06;
+    color: rgb(115, 118, 119);
     text-decoration: none;
 }
+
 .form .register-form {
     display: none;
 }
