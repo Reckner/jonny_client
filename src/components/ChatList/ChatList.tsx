@@ -3,7 +3,6 @@ import classnames from 'classnames';
 import styles from './ChatList.module.scss';
 import ChatElement from '../ChatElement/ChatElement';
 import { Link } from 'react-router-dom';
-import { users } from '../../assets/mocks/users';
 
 export interface ChatMock {
     id: number;
@@ -14,17 +13,11 @@ export interface ChatMock {
 }
 
 interface ChatList {
+    chats: ChatMock[];
     setTarget: React.Dispatch<React.SetStateAction<ChatMock | null>>;
 }
 
-const ChatList: React.FC<ChatList> = ({ setTarget }) => {
-    const [chats, setChats] = useState<ChatMock[]>(users);
-
-    const handleDeleteChat = (id) => {
-        var items = chats.filter((chat) => chat.id !== id);
-        setChats(items);
-    };
-
+const ChatList: React.FC<ChatList> = ({ chats, setTarget }) => {
     return (
         <div
             className={classnames(
@@ -33,18 +26,14 @@ const ChatList: React.FC<ChatList> = ({ setTarget }) => {
             )}
         >
             {chats.map((chat) => (
-                <Link
-                    to={`/chat/${chat.id}`}
-                    className="text-decoration-none"
-                >
+                <Link to={`/chat/${chat.id}`} className="text-decoration-none">
                     <ChatElement
-                        chats={chats}
                         setTarget={setTarget}
                         id={chat.id}
-                        avatar={chat.photo}
+                        photo={chat.photo}
                         name={chat.name}
                         message={chat.message}
-                        date={chat.time}
+                        time={chat.time}
                     />
                 </Link>
             ))}

@@ -6,13 +6,19 @@ import { ChatMock } from '../ChatList/ChatList';
 import io from 'socket.io-client';
 import MessageArea from '../MessageArea/MessageArea';
 import { IMessage } from '../MessageArea/Message/Message';
+import { Link } from 'react-router-dom';
 
 interface ChatArea {
     target: ChatMock | null;
     setModalLayout: React.Dispatch<React.SetStateAction<string>>;
+    handleDeleteChat: any;
 }
 
-const ChatArea: React.FC<ChatArea> = ({ target, setModalLayout }) => {
+const ChatArea: React.FC<ChatArea> = ({
+    target,
+    setModalLayout,
+    handleDeleteChat,
+}) => {
     let socket;
 
     const [messageText, setMessageText] = useState<string>('');
@@ -192,9 +198,13 @@ const ChatArea: React.FC<ChatArea> = ({ target, setModalLayout }) => {
                     >
                         View Profile
                     </a>
-                    <a className="dropdown-item" href="">
+                    <Link
+                        className="dropdown-item"
+                        onClick={(e) => handleDeleteChat(e, target.id)}
+                        to="/chat"
+                    >
                         Delete Chat
-                    </a>
+                    </Link>
                 </div>
             </div>
             <div className={classnames('d-flex flex-fill', styles.messagearea)}>

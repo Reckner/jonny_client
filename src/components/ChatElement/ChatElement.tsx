@@ -5,27 +5,25 @@ import { ChatMock } from '../ChatList/ChatList';
 import styles from './ChatElement.module.scss';
 
 interface Chat {
-    avatar?: string;
+    photo: string;
     name: string;
-    message?: string;
-    date?: string;
+    message: string;
+    time: string;
     id: number;
     setTarget: React.Dispatch<React.SetStateAction<ChatMock | null>>;
-    chats: ChatMock[];
 }
 
 const ChatElement: React.FC<Chat> = ({
-    avatar,
+    photo,
     name,
     message,
-    date,
+    time,
     id,
     setTarget,
-    chats,
 }) => {
     return (
         <a
-            onClick={() => setTarget(chats.filter((chat) => chat.id === id)[0])}
+            onClick={() => setTarget({ photo, name, message, time, id })}
             className={classnames(
                 'd-flex align-items-center px-3 py-2 text-decoration-none text-body',
                 styles.element,
@@ -35,7 +33,7 @@ const ChatElement: React.FC<Chat> = ({
             <div className="mr-2">
                 <img
                     className={classnames('rounded-circle', styles.avatar)}
-                    src={avatar}
+                    src={photo}
                     alt="Avatar"
                 />
             </div>
@@ -48,7 +46,7 @@ const ChatElement: React.FC<Chat> = ({
                 </div>
             </div>
             <div className="align-self-start ml-auto">
-                <span className={styles.date}>{date}</span>
+                <span className={styles.date}>{time}</span>
             </div>
         </a>
     );
