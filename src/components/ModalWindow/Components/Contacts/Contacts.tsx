@@ -14,7 +14,8 @@ interface Contacts {
     contacts: IContact[];
 }
 
-const Contacts: React.FC<Contacts> = ({ target, contacts }) => {
+const Contacts: React.FC<Contacts> = ({ target }) => {
+    const [contacts, setContacts] = useState(users);
     return (
         <>
             <div
@@ -26,7 +27,7 @@ const Contacts: React.FC<Contacts> = ({ target, contacts }) => {
                 <HeaderSettings target={target} headerName="Contacts" />
                 <div className="d-flex flex-column flex-fill overflow-auto w-100 border-top border-bottom">
                     {contacts.map((contact) => (
-                        <Contact name={contact.username} photo={photo} />
+                        <Contact name={contact.name} photo={contact.photo} />
                     ))}
                 </div>
             </div>
