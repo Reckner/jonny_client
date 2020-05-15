@@ -5,7 +5,7 @@ import { SettingsIcon } from '../../assets/images';
 import { ChatMock } from '../ChatList/ChatList';
 import io from 'socket.io-client';
 import MessageArea from '../MessageArea/MessageArea';
-import { IMessage } from '../MessageArea/Message/Message';
+import Message, { IMessage } from '../MessageArea/Message/Message';
 import { Link } from 'react-router-dom';
 
 interface ChatArea {
@@ -45,18 +45,7 @@ const ChatArea: React.FC<ChatArea> = ({
         setModalLayout('profile');
     };
 
-    const messages: IMessage[] = [
-        {
-            text:
-                'Some text to displaySome text to displaySome text to displaySome text to displaySome text to displaySome text to displaySome text to displaySome text to displaySome text to displaySome text to displaySome text to displaySome text to displaySome text to display',
-            sender: 'self',
-            time: new Date(2020, 2, 5),
-        },
-        {
-            text: 'Also some text',
-            sender: 'nself',
-            time: new Date(2020, 2, 5),
-        },
+    let messagesMock: IMessage[] = [
         {
             text: 'Some text to display',
             sender: 'self',
@@ -80,79 +69,34 @@ const ChatArea: React.FC<ChatArea> = ({
         {
             text: 'Some text to display',
             sender: 'self',
-            time: new Date(2020, 2, 5),
-        },
-        {
-            text: 'Also some text',
-            sender: 'nself',
-            time: new Date(2020, 2, 5),
-        },
-        {
-            text: 'Some text to display',
-            sender: 'self',
-            time: new Date(2020, 2, 5),
-        },
-        {
-            text: 'Also some text',
-            sender: 'nself',
-            time: new Date(2020, 2, 5),
-        },
-        {
-            text: 'Some text to display',
-            sender: 'self',
-            time: new Date(2020, 2, 5),
-        },
-        {
-            text: 'Also some text',
-            sender: 'nself',
-            time: new Date(2020, 2, 5),
-        },
-        {
-            text: 'Some text to display',
-            sender: 'self',
-            time: new Date(2020, 2, 5),
-        },
-        {
-            text: 'Also some text',
-            sender: 'nself',
-            time: new Date(2020, 2, 5),
-        },
-        {
-            text: 'Some text to display',
-            sender: 'self',
-            time: new Date(2020, 2, 5),
-        },
-        {
-            text: 'Also some text',
-            sender: 'nself',
-            time: new Date(2020, 2, 5),
-        },
-        {
-            text: 'Some text to display',
-            sender: 'self',
-            time: new Date(2020, 2, 5),
-        },
-        {
-            text: 'Also some text',
-            sender: 'nself',
-            time: new Date(2020, 2, 5),
-        },
-        {
-            text: 'Some text to display',
-            sender: 'self',
-            time: new Date(2020, 2, 5),
-        },
-        {
-            text: 'Also some text',
-            sender: 'nself',
             time: new Date(2020, 2, 5),
         },
     ];
 
+    const [message, setMessage] = useState<string>('');
+    const [messages, setMessages] = useState<IMessage[]>(messagesMock);
+
+    const handleMessage = (e) => {
+        const text = e.target.value;
+        e.target.value = '';
+        e.preventDefault();
+        setMessage(text);
+        const updatedMessages = messages.map((message) => message);
+        if (message) {
+            updatedMessages.push({
+                text: message,
+                sender: 'self',
+                time: new Date(),
+            });
+        }
+
+        setMessages(updatedMessages);
+    };
+
     return target ? (
         <div
             className={classnames(
-                'd-flex flex-column border flex-fill',
+                'd-flex flex-column border flex-fill w-100',
                 styles['chat-area'],
             )}
         >
@@ -212,9 +156,20 @@ const ChatArea: React.FC<ChatArea> = ({
             </div>
             <div className="d-flex justify-content-between align-items-center border-top p-2">
                 <div className="input-group mr-2">
-                    <input className="form-control rounded"></input>
+                    <input
+                        className="form-control rounded"
+                        placeholder="Type a message..."
+                        onChange={({ target: { value } }) => setMessage(value)}
+                        onKeyPress={(event) =>
+                            event.key === 'Enter' ? handleMessage(event) : null
+                        }
+                    ></input>
                 </div>
-                <button className="btn-primary rounded" type="button">
+                <button
+                    className="btn-primary rounded"
+                    type="button"
+                    onClick={(e) => handleMessage(e)}
+                >
                     Send
                 </button>
             </div>
