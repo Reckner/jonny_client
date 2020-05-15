@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import $ from 'jquery';
+import jwt from 'jsonwebtoken';
+import { User } from '../../App';
 
 import './Hero.scss';
 import axios from 'axios';
@@ -8,9 +10,10 @@ import { Redirect } from 'react-router-dom';
 interface Hero {
     auth: boolean;
     setAuth: React.Dispatch<React.SetStateAction<boolean>>;
+    setUser: React.Dispatch<React.SetStateAction<User | null>>;
 }
 
-const Hero: React.FC<Hero> = ({ auth, setAuth }) => {
+const Hero: React.FC<Hero> = ({ auth, setAuth, setUser }) => {
     const [logEmail, setLogEmail] = useState<string>('');
     const [logPassword, setLogPassword] = useState<string>('');
 
@@ -31,11 +34,29 @@ const Hero: React.FC<Hero> = ({ auth, setAuth }) => {
             password: logPassword,
         });
 
-        console.log(response);
-
         if (response.data?.auth && response.data?.token) {
             localStorage.setItem('x-access-token', response.data.token);
             setAuth(true);
+        }
+
+        const token = localStorage.getItem('x-access-token') || '';
+        if (token.length > 0) {
+            try {
+                const decoded = jwt.verify(
+                    token,
+                    process.env.JWT_SECRET || 'bestteamreckneris',
+                );
+
+                if (decoded) {
+                    const { identifier, username, email } = decoded;
+                    setUser({ identifier, username, email });
+                }
+            } catch (err) {
+                localStorage.removeItem('x-access-token');
+                throw new Error(err);
+            }
+        } else {
+            throw new Error('token empty');
         }
     };
 
