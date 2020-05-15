@@ -13,3 +13,4 @@ export { default as photoTarvo } from './tarvo.jpg';
 export { default as photoVladislav } from './vladislav.jpg';
 export { default as photoXAEA12 } from './xaea12.jpeg';
 export { default as photoZuganov } from './genadi.jpg';
+export { default as photoDefault } from './avatar.png';

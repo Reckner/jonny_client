@@ -2,12 +2,14 @@ import React from 'react';
 import classnames from 'classnames';
 import styles from './ProfileDetails.module.scss';
 import { ChatMock } from '../../../ChatList/ChatList';
+import { photoDefault } from '../../../../assets/mocks/images/index';
 
 interface ProfileDetails {
     target: ChatMock | null;
 }
 
 const ProfileDetails: React.FC<ProfileDetails> = ({ target }) => {
+
     return (
         <>
             <div

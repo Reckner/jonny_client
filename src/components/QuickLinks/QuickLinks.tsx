@@ -23,6 +23,10 @@ const QuickLinks: React.FC<QuickLinks> = ({
 }) => {
     const params = useParams<RouteParams>();
 
+    const logout = () => {
+        localStorage.removeItem('x-access-token');
+    };
+
     const showContacts = () => {
         setModalLayout('contacts');
     };
@@ -107,12 +111,18 @@ const QuickLinks: React.FC<QuickLinks> = ({
                 </div>
                 <div className="d-flex flex-column align-items-center">
                     <div
-                        className={styles.profileLogo}
+                        className={classnames('pb-4', styles.defaultLogo)}
                         data-toggle="modal"
                         data-target="#exampleModalCenter"
                         onClick={showUserProfile}
                     >
                         <i className="fas fa-user pa-5"></i>
+                    </div>
+                    <div
+                        className={styles.profileLogo}
+                        onClick={logout}
+                    >
+                        <i className='fas fa-sign-out-alt'></i>
                     </div>
                 </div>
             </div>
