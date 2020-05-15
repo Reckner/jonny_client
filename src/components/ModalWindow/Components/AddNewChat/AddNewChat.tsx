@@ -45,7 +45,7 @@ const AddNewChat: React.FC<AddNewChat> = ({target, setModalLayout}) => {
                         </div>
 
                 {contacts.map((contact) => (
-                    <div className="input-group">
+                    <div className="d-flex justify-content-between">
                         <Contact
                             name={contact.name}
                             photo={contact.photo}/>

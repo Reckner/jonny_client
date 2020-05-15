@@ -63,7 +63,7 @@ const Modal: React.FC<Modal> = ({ target, modalLayout, setModalLayout }) => {
             aria-labelledby="exampleModalCenterTitle"
             aria-hidden="true"
         >
-            <div className="modal-dialog modal-dialog-centered" role="document">
+            <div className="modal-dialog modal-dialog-centered rounded-top" role="document">
                 <div className="modal-content">{handleContent()}</div>
             </div>
         </div>

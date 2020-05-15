@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
 import styles from './Button.module.scss';
+import { ChatMock } from '../../../ChatList/ChatList';
 
 interface Button {
     whatFor: string;
+    value: any;
 }
 
-const Button: React.FC<Button> = ({ whatFor }) => {
+const Button: React.FC<Button> = ({ whatFor, value}) => {
     const [name, setName] = useState('');
     return (
         <>
@@ -25,6 +27,7 @@ const Button: React.FC<Button> = ({ whatFor }) => {
                     <input
                         type="text"
                         className="form-control"
+                        value = {value}
                         onChange={(event) => setName(event.target.value)}
                     ></input>
                 </div>

@@ -11,7 +11,8 @@ import { Chat, Hero, PrivateRoute } from './components';
 
 const App: React.FC = () => {
     const authenticated = async (): Promise<boolean> => {
-        return new Promise((resolve, reject) => {
+        return new
+         Promise((resolve, reject) => {
             const token = localStorage.getItem('x-access-token') || '';
             if (token.length > 0) {
                 try {
@@ -26,7 +27,6 @@ const App: React.FC = () => {
                         resolve(false);
                     }
                 } catch (err) {
-                    localStorage.removeItem('x-access-token');
                     reject(err);
                 }
             } else {

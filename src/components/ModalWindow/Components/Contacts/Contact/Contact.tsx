@@ -13,7 +13,7 @@ const Contact: React.FC<Contact> = ({name, photo}) => {
         <>
             <div
                 className={classnames(
-                    'd-flex align-items-center px-3 py-2 border-bottom',
+                    'd-flex align-items-center px-3 py-2',
                     styles['contact'],
                 )}
             >

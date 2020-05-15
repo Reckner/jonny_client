@@ -8,7 +8,7 @@ const Header: React.FC = () => {
         <>
             <div
                 className={classnames(
-                    'd-flex justify-content-center flex-fill my-2 py-2',
+                    'd-flex justify-content-center border-bottom  flex-fill py-2',
                     styles['header'],
                 )}
             >

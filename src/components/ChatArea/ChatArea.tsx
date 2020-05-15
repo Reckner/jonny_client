@@ -152,11 +152,11 @@ const ChatArea: React.FC<ChatArea> = ({
     return target ? (
         <div
             className={classnames(
-                'd-flex flex-column border flex-fill',
+                'd-flex flex-column border-left flex-fill',
                 styles['chat-area'],
             )}
         >
-            <div className="d-flex justify-content-between align-items-center px-3 py-2">
+            <div className="d-flex justify-content-between border-bottom align-items-center px-3 py-2">
                 <div className="d-flex">
                     <button
                         className={styles['return-button']}
@@ -212,7 +212,7 @@ const ChatArea: React.FC<ChatArea> = ({
             </div>
             <div className="d-flex justify-content-between align-items-center border-top p-2">
                 <div className="input-group mr-2">
-                    <input className="form-control rounded"></input>
+                    <input className={classnames("form-control rounded", styles.input)}></input >
                 </div>
                 <button className="btn-primary rounded" type="button">
                     Send

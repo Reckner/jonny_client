@@ -23,7 +23,7 @@ const Message: React.FC<Message> = ({ message }) => {
     }
 
     return isSentByCurrentUser ? (
-        <div className="d-flex justify-content-end">
+        <div className="d-flex justify-content-end px-2">
             <div
                 className={classnames(
                     'm-2 py-1 px-2 rounded',
@@ -35,7 +35,7 @@ const Message: React.FC<Message> = ({ message }) => {
             </div>
         </div>
     ) : (
-        <div className="d-flex justify-content-start">
+        <div className="d-flex justify-content-start px-2">
             {/* <p className="sentText pl-10 ">{sender}</p> */}
             <div
                 className={classnames(
