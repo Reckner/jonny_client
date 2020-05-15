@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import styles from './QuickLinks.module.scss';
 import Modal from '../ModalWindow/Modal';
 import { ChatMock } from '../ChatList/ChatList';
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 import AddNewChat from '../ModalWindow/Components/AddNewChat/AddNewChat';
 import { Contact } from '../Chat/Chat';
 
@@ -30,6 +30,7 @@ const QuickLinks: React.FC<QuickLinks> = ({
 
     const logout = () => {
         localStorage.removeItem('x-access-token');
+        window.location.reload(true);
     };
 
     const showContacts = () => {
@@ -123,11 +124,8 @@ const QuickLinks: React.FC<QuickLinks> = ({
                     >
                         <i className="fas fa-user pa-5"></i>
                     </div>
-                    <div
-                        className={styles.profileLogo}
-                        onClick={logout}
-                    >
-                        <i className='fas fa-sign-out-alt'></i>
+                    <div className={styles.profileLogo} onClick={logout}>
+                        <i className="fas fa-sign-out-alt"></i>
                     </div>
                 </div>
             </div>
