@@ -5,12 +5,15 @@ import Modal from '../ModalWindow/Modal';
 import { ChatMock } from '../ChatList/ChatList';
 import { useParams } from 'react-router-dom';
 import AddNewChat from '../ModalWindow/Components/AddNewChat/AddNewChat';
+import { Contact } from '../Chat/Chat';
 
 interface RouteParams {
     id: string;
 }
 
 interface QuickLinks {
+    contacts: Contact[];
+    setContacts: React.Dispatch<React.SetStateAction<Contact[]>>;
     target: ChatMock | null;
     modalLayout: string;
     setModalLayout: React.Dispatch<React.SetStateAction<string>>;
@@ -20,6 +23,8 @@ const QuickLinks: React.FC<QuickLinks> = ({
     target,
     modalLayout,
     setModalLayout,
+    contacts,
+    setContacts,
 }) => {
     const params = useParams<RouteParams>();
 
@@ -128,6 +133,8 @@ const QuickLinks: React.FC<QuickLinks> = ({
             </div>
 
             <Modal
+                contacts={contacts}
+                setContacts={setContacts}
                 target={target}
                 modalLayout={modalLayout}
                 setModalLayout={setModalLayout}

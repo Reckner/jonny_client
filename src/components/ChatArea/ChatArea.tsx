@@ -80,7 +80,7 @@ const ChatArea: React.FC<ChatArea> = ({
 
             setMessages(updatedMessages);
 
-            socket.to().emit('new-message', newMessage, () => {});
+            //socket.emit('new-message', newMessage, () => {});
         }
     };
 

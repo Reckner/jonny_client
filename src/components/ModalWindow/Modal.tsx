@@ -5,14 +5,23 @@ import './Modal.scss';
 import AddNewContact from './Components/Contacts/AddNewContact/AddNewContact';
 import Profile from './Components/Profile/Profile';
 import AddNewChat from './Components/AddNewChat/AddNewChat';
+import { Contact } from '../Chat/Chat';
 
 interface Modal {
     target: ChatMock | null;
     modalLayout: string;
     setModalLayout: React.Dispatch<React.SetStateAction<string>>;
+    contacts: Contact[];
+    setContacts: React.Dispatch<React.SetStateAction<Contact[]>>;
 }
 
-const Modal: React.FC<Modal> = ({ target, modalLayout, setModalLayout }) => {
+const Modal: React.FC<Modal> = ({
+    target,
+    modalLayout,
+    setModalLayout,
+    contacts,
+    setContacts,
+}) => {
     const handleContent = () => {
         switch (modalLayout) {
             case 'appsettings':
@@ -32,12 +41,12 @@ const Modal: React.FC<Modal> = ({ target, modalLayout, setModalLayout }) => {
             case 'profile':
                 return <Profile target={target} />;
             case 'contacts':
-                return (
-                    <Contacts target={target} setModalLayout={setModalLayout} />
-                );
+                return <Contacts contacts={contacts} target={target} />;
             case 'addnewcontact':
                 return (
                     <AddNewContact
+                        contacts={contacts}
+                        setContacts={setContacts}
                         target={target}
                         setModalLayout={setModalLayout}
                     />

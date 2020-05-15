@@ -3,17 +3,9 @@ import {
     photoRuben,
     photoVladislav,
     photoPaul,
-    photoTarvo,
     photoEmma,
     photoSteve,
     photoElon,
-    photoIldar,
-    photoBurunov,
-    photoZuganov,
-    photoAleksandr,
-    photoSpanch,
-    photoRicardo,
-    photoXAEA12,
 } from './images';
 
 export const users = [

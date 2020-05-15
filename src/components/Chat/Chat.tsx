@@ -16,11 +16,14 @@ interface Chat {
     user: User | null;
 }
 
+export interface Contact extends User {}
+
 const Chat: React.FC<Chat> = ({ user }) => {
     const [target, setTarget] = useState<ChatMock | null>(null);
     const [modalLayout, setModalLayout] = useState<string>('appsettings');
     const [layout, setLayout] = useState<string>('default');
     const [chats, setChats] = useState<ChatMock[]>(users);
+    const [contacts, setContacts] = useState<Contact[]>([]);
 
     let socket;
 
@@ -94,6 +97,8 @@ const Chat: React.FC<Chat> = ({ user }) => {
                                 path="/chat"
                                 render={() => (
                                     <Footer
+                                        contacts={contacts}
+                                        setContacts={setContacts}
                                         target={target}
                                         setModalLayout={setModalLayout}
                                         modalLayout={modalLayout}
@@ -107,6 +112,8 @@ const Chat: React.FC<Chat> = ({ user }) => {
                 return (
                     <Router>
                         <QuickLinks
+                            contacts={contacts}
+                            setContacts={setContacts}
                             target={target}
                             modalLayout={modalLayout}
                             setModalLayout={setModalLayout}
@@ -136,6 +143,8 @@ const Chat: React.FC<Chat> = ({ user }) => {
                 return (
                     <Router>
                         <QuickLinks
+                            contacts={contacts}
+                            setContacts={setContacts}
                             target={target}
                             modalLayout={modalLayout}
                             setModalLayout={setModalLayout}

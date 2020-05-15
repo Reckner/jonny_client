@@ -5,19 +5,30 @@ import profilePicture from '../../../../../assets/mocks/images/ruben.jpg';
 import HeaderSettings from '../../HeaderSettings/HeaderSettings';
 import { ChatMock } from '../../../../ChatList/ChatList';
 import axios from 'axios';
+import { Contact } from '../../../../Chat/Chat';
 
 interface AddNewContact {
     target: ChatMock | null;
     setModalLayout: React.Dispatch<React.SetStateAction<string>>;
+    contacts: Contact[];
+    setContacts: React.Dispatch<React.SetStateAction<Contact[]>>;
 }
 
-const AddNewContact: React.FC<AddNewContact> = ({ target, setModalLayout }) => {
-    const [identifier, setIdentifier] = useState<string>('');
+const AddNewContact: React.FC<AddNewContact> = ({
+    target,
+    setModalLayout,
+    contacts,
+    setContacts,
+}) => {
+    const [contactIdentifier, setIdentifier] = useState<string>('');
 
     const handleContact = async (event) => {
         const response = await axios.get(
-            `http://127.0.0.1:5000/user/${identifier}`,
+            `http://127.0.0.1:5000/user/${contactIdentifier}`,
         );
+        const { username, email, identifier } = response.data;
+        const newContact: Contact = { username, email, identifier };
+        setContacts([...contacts, newContact]);
     };
 
     return (

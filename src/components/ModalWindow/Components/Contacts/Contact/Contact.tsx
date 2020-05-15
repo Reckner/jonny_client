@@ -1,14 +1,13 @@
 import React from 'react';
 import classnames from 'classnames';
 import styles from './Contact.module.scss';
-import profilePicture from '../../../../../assets/mocks/images/ruben.jpg';
 
-interface Contact {
+interface IContact {
     name: string;
     photo: string;
-};
+}
 
-const Contact: React.FC<Contact> = ({name, photo}) => {
+const Contact: React.FC<IContact> = ({ name, photo }) => {
     return (
         <>
             <div
