@@ -13,7 +13,7 @@ interface Contacts {
 }
 
 const Contacts: React.FC<Contacts> = ({ target, setModalLayout }) => {
-    const [contacts, setContacts]= useState(users);
+    const [contacts, setContacts] = useState(users);
     return (
         <>
             <div
@@ -22,12 +22,10 @@ const Contacts: React.FC<Contacts> = ({ target, setModalLayout }) => {
                     styles['contacts'],
                 )}
             >
-                <HeaderSettings target={target} headerName="Contacts"/>
+                <HeaderSettings target={target} headerName="Contacts" />
                 <div className="d-flex flex-column flex-fill overflow-auto w-100 border-top border-bottom">
-                    {contacts.map((contact)=>(
-                        <Contact 
-                            name={contact.name}
-                            photo={contact.photo}/>
+                    {contacts.map((contact) => (
+                        <Contact name={contact.name} photo={contact.photo} />
                     ))}
                 </div>
             </div>

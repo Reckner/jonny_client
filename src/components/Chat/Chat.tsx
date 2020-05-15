@@ -9,21 +9,29 @@ import HeaderSettings from '../ModalWindow/Components/HeaderSettings/HeaderSetti
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import { users } from '../../assets/mocks/users';
+import io from 'socket.io-client';
+import { User } from '../../App';
 
 interface Chat {
-    setTarget: React.Dispatch<React.SetStateAction<ChatMock | null>>;
+    user: User | null;
 }
 
-const Chat: React.FC<Chat> = () => {
+const Chat: React.FC<Chat> = ({ user }) => {
     const [target, setTarget] = useState<ChatMock | null>(null);
     const [modalLayout, setModalLayout] = useState<string>('appsettings');
     const [layout, setLayout] = useState<string>('default');
     const [chats, setChats] = useState<ChatMock[]>(users);
 
-    const handleDeleteChat = (e, id) => {
+    let socket;
+
+    useEffect(() => {
+        socket = io.connect('http://127.0.0.1:5001', { reconnection: true });
+    });
+
+    const handleDeleteChat = (e, identifier) => {
         e.preventDefault();
         setTarget(null);
-        var items = chats.filter((chat) => chat.id !== id);
+        var items = chats.filter((chat) => chat.identifier !== identifier);
         setChats(items);
     };
 
@@ -74,6 +82,8 @@ const Chat: React.FC<Chat> = () => {
                                 render={() => (
                                     <ChatArea
                                         target={target}
+                                        socket={socket}
+                                        user={user}
                                         setModalLayout={setModalLayout}
                                         handleDeleteChat={handleDeleteChat}
                                     />
@@ -112,6 +122,8 @@ const Chat: React.FC<Chat> = () => {
                             path="/chat/:id"
                             render={() => (
                                 <ChatArea
+                                    socket={socket}
+                                    user={user}
                                     handleDeleteChat={handleDeleteChat}
                                     target={target}
                                     setModalLayout={setModalLayout}
@@ -139,6 +151,8 @@ const Chat: React.FC<Chat> = () => {
                             path="/chat/:id"
                             render={() => (
                                 <ChatArea
+                                    socket={socket}
+                                    user={user}
                                     handleDeleteChat={handleDeleteChat}
                                     target={target}
                                     setModalLayout={setModalLayout}

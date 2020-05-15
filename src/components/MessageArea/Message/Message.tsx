@@ -3,6 +3,7 @@ import React from 'react';
 import ReactEmoji from 'react-emoji';
 
 import styles from './Message.module.scss';
+import { User } from '../../../App';
 
 export interface IMessage {
     text: string;
@@ -12,13 +13,14 @@ export interface IMessage {
 
 interface Message {
     message: IMessage;
+    user: User | null;
 }
 
-const Message: React.FC<Message> = ({ message }) => {
+const Message: React.FC<Message> = ({ message, user }) => {
     const { text, sender, time } = message;
     let isSentByCurrentUser = false;
 
-    if (sender === 'self') {
+    if (user && sender === user.identifier) {
         isSentByCurrentUser = true;
     }
 

@@ -9,7 +9,7 @@ interface Chat {
     name: string;
     message: string;
     time: string;
-    id: number;
+    identifier: string;
     setTarget: React.Dispatch<React.SetStateAction<ChatMock | null>>;
 }
 
@@ -18,12 +18,14 @@ const ChatElement: React.FC<Chat> = ({
     name,
     message,
     time,
-    id,
+    identifier,
     setTarget,
 }) => {
     return (
         <a
-            onClick={() => setTarget({ photo, name, message, time, id })}
+            onClick={() =>
+                setTarget({ photo, name, message, time, identifier })
+            }
             className={classnames(
                 'd-flex align-items-center px-3 py-2 text-decoration-none text-body',
                 styles.element,

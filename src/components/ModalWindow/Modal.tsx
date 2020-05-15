@@ -30,21 +30,20 @@ const Modal: React.FC<Modal> = ({ target, modalLayout, setModalLayout }) => {
                     />
                 );
             case 'profile':
-                return (
-                    <Profile target={target}/>
-                );
+                return <Profile target={target} />;
             case 'contacts':
                 return (
                     <Contacts target={target} setModalLayout={setModalLayout} />
                 );
             case 'addnewcontact':
                 return (
-                    <AddNewContact target={target} setModalLayout={setModalLayout}/>
+                    <AddNewContact
+                        target={target}
+                        setModalLayout={setModalLayout}
+                    />
                 );
             case 'addnewchat':
-                return (
-                    <AddNewChat target={target} setModalLayout={setModalLayout}/>
-                );
+                return <AddNewChat />;
             default:
                 return (
                     <AppSettings
@@ -63,7 +62,10 @@ const Modal: React.FC<Modal> = ({ target, modalLayout, setModalLayout }) => {
             aria-labelledby="exampleModalCenterTitle"
             aria-hidden="true"
         >
-            <div className="modal-dialog modal-dialog-centered rounded-top" role="document">
+            <div
+                className="modal-dialog modal-dialog-centered rounded-top"
+                role="document"
+            >
                 <div className="modal-content">{handleContent()}</div>
             </div>
         </div>

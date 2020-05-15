@@ -5,7 +5,7 @@ import ChatElement from '../ChatElement/ChatElement';
 import { Link } from 'react-router-dom';
 
 export interface ChatMock {
-    id: number;
+    identifier: string;
     name: string;
     message: string;
     time: string;
@@ -26,10 +26,13 @@ const ChatList: React.FC<ChatList> = ({ chats, setTarget }) => {
             )}
         >
             {chats.map((chat) => (
-                <Link to={`/chat/${chat.id}`} className="text-decoration-none">
+                <Link
+                    to={`/chat/${chat.identifier}`}
+                    className="text-decoration-none"
+                >
                     <ChatElement
                         setTarget={setTarget}
-                        id={chat.id}
+                        identifier={chat.identifier}
                         photo={chat.photo}
                         name={chat.name}
                         message={chat.message}

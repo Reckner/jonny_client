@@ -13,7 +13,7 @@ interface Modal {
 
 const Modal: React.FC<Modal> = ({ target, setModalLayout }) => {
     const params = useParams<RouteParams>();
-    const currentUserId = target?.id;
+    const currentUserId = target?.identifier;
 
     const showUserSettings = () => {
         setModalLayout('usersettings');
@@ -26,7 +26,6 @@ const Modal: React.FC<Modal> = ({ target, setModalLayout }) => {
     const showProfile = () => {
         setModalLayout('profile');
     };
-
 
     return (
         <>

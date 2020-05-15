@@ -19,8 +19,7 @@ const App: React.FC = () => {
     const [user, setUser] = useState<User | null>(null);
 
     const authenticated = async (): Promise<boolean> => {
-        return new
-         Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             const token = localStorage.getItem('x-access-token') || '';
             if (token.length > 0) {
                 try {
@@ -49,7 +48,24 @@ const App: React.FC = () => {
         (async () => {
             setAuth(await authenticated());
         })();
-    });
+
+        const token = localStorage.getItem('x-access-token') || '';
+        if (token.length > 0) {
+            try {
+                const decoded = jwt.verify(
+                    token,
+                    process.env.JWT_SECRET || 'bestteamreckneris',
+                );
+
+                if (decoded) {
+                    const { identifier, email, username } = decoded;
+                    setUser({ identifier, email, username });
+                }
+            } catch (err) {
+                throw new Error(err);
+            }
+        }
+    }, []);
 
     return (
         <Router>
@@ -65,7 +81,11 @@ const App: React.FC = () => {
                     exact
                     path="/"
                 />
-                <PrivateRoute auth={auth} path="/chat" component={Chat} />
+                <PrivateRoute
+                    auth={auth}
+                    path="/chat"
+                    render={() => <Chat user={user} />}
+                />
             </Switch>
         </Router>
     );

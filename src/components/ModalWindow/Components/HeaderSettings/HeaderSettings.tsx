@@ -10,7 +10,7 @@ interface HeaderSettings {
 }
 
 const HeaderSettings: React.FC<HeaderSettings> = ({ target, headerName }) => {
-    const userId = target?.id;
+    const userId = target?.identifier;
     return (
         <>
             <div
@@ -20,7 +20,7 @@ const HeaderSettings: React.FC<HeaderSettings> = ({ target, headerName }) => {
                 )}
             >
                 <div className="d-flex justify-content-center flex-fill">
-                        <h5>{headerName}</h5>
+                    <h5>{headerName}</h5>
                 </div>
             </div>
         </>

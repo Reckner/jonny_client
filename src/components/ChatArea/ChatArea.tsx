@@ -3,42 +3,28 @@ import classnames from 'classnames';
 import styles from './ChatArea.module.scss';
 import { SettingsIcon } from '../../assets/images';
 import { ChatMock } from '../ChatList/ChatList';
-import io from 'socket.io-client';
 import MessageArea from '../MessageArea/MessageArea';
-import Message, { IMessage } from '../MessageArea/Message/Message';
+import { IMessage } from '../MessageArea/Message/Message';
 import { Link } from 'react-router-dom';
+import { User } from '../../App';
 
 interface ChatArea {
     target: ChatMock | null;
     setModalLayout: React.Dispatch<React.SetStateAction<string>>;
     handleDeleteChat: any;
+    socket: any;
+    user: User | null;
 }
 
 const ChatArea: React.FC<ChatArea> = ({
     target,
     setModalLayout,
     handleDeleteChat,
+    socket,
+    user,
 }) => {
-    let socket;
-
-    const [messageText, setMessageText] = useState<string>('');
-
-    useEffect(() => {
-        socket = io.connect('http://127.0.0.1:5001', { reconnection: true });
-    });
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        socket.emit('message', messageText, () => {});
-    };
-
     const handleClose = (e) => {
         window.location.replace('/chat');
-    };
-
-    const handleTextChange = (e) => {
-        setMessageText(e.target.value);
     };
 
     const showUserProfile = () => {
@@ -48,7 +34,7 @@ const ChatArea: React.FC<ChatArea> = ({
     let messagesMock: IMessage[] = [
         {
             text: 'Some text to display',
-            sender: 'self',
+            sender: 'be21467ed99e21d4',
             time: new Date(2020, 2, 5),
         },
         {
@@ -77,30 +63,31 @@ const ChatArea: React.FC<ChatArea> = ({
     const [messages, setMessages] = useState<IMessage[]>(messagesMock);
 
     const handleMessage = (e) => {
-        const text = e.target.value;
-        e.target.value = '';
-        e.preventDefault();
-        setMessage(text);
-        const updatedMessages = messages.map((message) => message);
-        if (message) {
-            updatedMessages.push({
+        if (user) {
+            const text = e.target.value;
+            e.target.value = '';
+            e.preventDefault();
+            setMessage(text);
+            const updatedMessages = messages.map((message) => message);
+            const newMessage = {
                 text: message,
-                sender: 'self',
+                sender: user.identifier,
                 time: new Date(),
-            });
-        }
+            };
+            if (message) {
+                updatedMessages.push(newMessage);
+            }
 
-        setMessages(updatedMessages);
+            setMessages(updatedMessages);
+
+            socket.to().emit('new-message', newMessage, () => {});
+        }
     };
 
     return target ? (
         <div
             className={classnames(
-<<<<<<< HEAD
-                'd-flex flex-column border-left flex-fill',
-=======
-                'd-flex flex-column border flex-fill w-100',
->>>>>>> 68290a1cada230c9fb71ae7e682eabf8c39ab4fc
+                'd-flex flex-column border-left flex-fill w-100',
                 styles['chat-area'],
             )}
         >
@@ -148,7 +135,7 @@ const ChatArea: React.FC<ChatArea> = ({
                     </a>
                     <Link
                         className="dropdown-item"
-                        onClick={(e) => handleDeleteChat(e, target.id)}
+                        onClick={(e) => handleDeleteChat(e, target.identifier)}
                         to="/chat"
                     >
                         Delete Chat
@@ -156,22 +143,21 @@ const ChatArea: React.FC<ChatArea> = ({
                 </div>
             </div>
             <div className={classnames('d-flex flex-fill', styles.messagearea)}>
-                <MessageArea messages={messages} />
+                <MessageArea messages={messages} user={user} />
             </div>
             <div className="d-flex justify-content-between align-items-center border-top p-2">
                 <div className="input-group mr-2">
-<<<<<<< HEAD
-                    <input className={classnames("form-control rounded", styles.input)}></input >
-=======
                     <input
-                        className="form-control rounded"
+                        className={classnames(
+                            'form-control rounded',
+                            styles.input,
+                        )}
                         placeholder="Type a message..."
                         onChange={({ target: { value } }) => setMessage(value)}
                         onKeyPress={(event) =>
                             event.key === 'Enter' ? handleMessage(event) : null
                         }
                     ></input>
->>>>>>> 68290a1cada230c9fb71ae7e682eabf8c39ab4fc
                 </div>
                 <button
                     className="btn-primary rounded"

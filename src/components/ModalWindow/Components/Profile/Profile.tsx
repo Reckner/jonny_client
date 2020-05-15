@@ -6,9 +6,9 @@ import { ChatMock } from '../../../ChatList/ChatList';
 import ProfileDetails from '../ProfileDetails/ProfileDetails';
 import Button from '../Button/Button';
 
-interface Profile{
+interface Profile {
     target: ChatMock | null;
-};
+}
 
 const Profile: React.FC<Profile> = ({ target }) => {
     return (
@@ -18,15 +18,17 @@ const Profile: React.FC<Profile> = ({ target }) => {
                 styles['profile'],
             )}
         >
-        <HeaderSettings target={target} headerName="Profile"/>
-        <ProfileDetails target={target}/>
-        <hr />
-        <Button whatFor="Username" value={target?.name}/>
-        <hr />
-        <Button whatFor="Email" value={target?.name}/>
-        <hr />
-        <Button whatFor="Phone number" value={target?.name}/>
-        <hr />
+            <HeaderSettings target={target} headerName="Profile" />
+            <ProfileDetails target={target} />
+            <hr />
+            <Button whatFor="Username" value={target?.name} />
+            <hr />
+            <Button whatFor="Email" value={target?.name} />
+            <hr />
+            <Button whatFor="Phone number" value={target?.name} />
+            <hr />
+            <Button whatFor="Identifier" value={target?.identifier} />
+            <hr />
         </div>
     );
 };
